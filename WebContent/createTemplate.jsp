@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form action ="createTemplate.jsp" method="post">Create File: 
+<form action ="createTemplate.jsp" method="post">Create Template: 
   <input type="text" name="filename" />
   
   <br />
@@ -24,6 +24,7 @@ String tmp = request.getParameter("filename");
 Template template = new Template(application.getRealPath(tmp));
 if(template.isAllowedExtension(template.getExtension())) {
 	template.createTemplate();
+	out.println("<font color=\"green\">Template successfully created!<br><br></font>");
 	out.println("<b>Filename:</b> "+template.getFilename());
 	out.println("<br>");
 	out.println("<b>Path: </b>"+application.getRealPath(tmp));

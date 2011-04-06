@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action ="createTemplate.jsp" method="post">Create File: 
+<form action ="createTemplate.jsp" method="post">Create Template: 
   <input type="text" name="filename" />
   
   <br />
