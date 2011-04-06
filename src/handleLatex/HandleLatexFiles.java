@@ -36,12 +36,17 @@ public class HandleLatexFiles {
 	 * @param filenameInput, filename Output: filename of template, outputfilename
 	 * 
 	 */
-	public HandleLatexFiles(String inputDirectory, String outputDirectory, String filenameInput, String filenameOutput) {
-		inputDirectory_ = new File(inputDirectory);
-		outputDirectory_ = new File(outputDirectory);
+	public HandleLatexFiles(String filePath) {
+		String directory = filePath.substring(0,filePath.lastIndexOf("\\"));
 		
-		inputFile_ = new File(inputDirectory_.getPath() + File.separator + filenameInput);
-		outputFile_ = new File(outputDirectory_.getPath() + File.separator + filenameOutput);
+//		String[] splitFilename = filePath.split("/");
+//		String directory = splitFilename[splitFilename.length-1];
+//		
+		outputDirectory_ = new File(directory);
+		
+		inputFile_ = new File(filePath);
+		//outputFile_ = new File(directory + File.separator + "outtest.tex");
+//		outputFile_ = new File(outputDirectory_.getPath() + File.separator + "out_test.tex");
 				
 		scanLatex();
 				
@@ -53,12 +58,12 @@ public class HandleLatexFiles {
 	 * @param input: a String List with data inputs 
 	 * @return true if parsing works correct, else false
 	 */
-	public boolean insertData(List<String> input) {
+	public boolean insertData(List<String> input, String filePath) {
 		HashMap<String, String> data = new HashMap<String, String>();
 		for(int i = 0; i < listVar_.size(); i++) {
 			data.put(listVar_.get(i), input.get(i));
 		}
-		
+		outputFile_ = new File(filePath);
 		return parseLatex(data);
 	}
 	
