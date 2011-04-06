@@ -10,6 +10,12 @@ import java.util.Scanner;
 
 import de.nixosoft.jlr.JLRConverter;
 
+/**
+ * 
+ * @author Bernadette Merkinger, David Pichsenmeister
+ * 04-06-2011
+ *
+ */
 public class HandleLatexFiles {
 	
 	private File inputFile_;
@@ -23,14 +29,19 @@ public class HandleLatexFiles {
 	 * 
 	 * Constructor
 	 * 
+	 * directory paths and filenames are needed
+	 * File with inputfilename must already exist
+	 * 
+	 * @param inputDirectory, outputDirectory: path to input directory, output directory
+	 * @param filenameInput, filename Output: filename of template, outputfilename
+	 * 
 	 */
-	public HandleLatexFiles() {
-		inputDirectory_ = new File("/Users/Berni/eclipse-workspace/input_files");
-		outputDirectory_ = new File("/Users/Berni/eclipse-workspace/output");
+	public HandleLatexFiles(String inputDirectory, String outputDirectory, String filenameInput, String filenameOutput) {
+		inputDirectory_ = new File(inputDirectory);
+		outputDirectory_ = new File(outputDirectory);
 		
-		String filename = "first_file.tex";
-		inputFile_ = new File(inputDirectory_.getPath() + File.separator + filename);
-		outputFile_ = new File(outputDirectory_.getPath() + File.separator + "out_" + filename);
+		inputFile_ = new File(inputDirectory_.getPath() + File.separator + filenameInput);
+		outputFile_ = new File(outputDirectory_.getPath() + File.separator + filenameOutput);
 				
 		scanLatex();
 				
