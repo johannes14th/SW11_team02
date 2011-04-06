@@ -1,3 +1,4 @@
+<%@page import="javax.naming.Context"%>
 <%@ page import = "CreateTemplate.Template" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -20,9 +21,7 @@
 
 String tmp = request.getParameter("filename");
 
-String path = "C:\\Users\\johannes\\workspace\\SW11\\JspTest\\";
-
-Template template = new Template(path.concat(tmp));
+Template template = new Template(application.getRealPath(tmp));
 if(template.isAllowedExtension(template.getExtension())) {
 	template.createTemplate();
 	out.println(template.getFilename());
