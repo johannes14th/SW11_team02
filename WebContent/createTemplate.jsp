@@ -24,7 +24,9 @@ String tmp = request.getParameter("filename");
 Template template = new Template(application.getRealPath(tmp));
 if(template.isAllowedExtension(template.getExtension())) {
 	template.createTemplate();
-	out.println(template.getFilename());
+	out.println("<b>Filename:</b> "+template.getFilename());
+	out.println("<br>");
+	out.println("<b>Path: </b>"+application.getRealPath(tmp));
 } else {
 	out.println("No valid Extension!");
 }
