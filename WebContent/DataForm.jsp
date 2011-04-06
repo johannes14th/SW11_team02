@@ -16,7 +16,7 @@
 DataForm data = new DataForm(application.getRealPath("test.tex"));
 
 for(String entry : data.getVars() ) {
-	out.println(entry +": " + "<input type=\"text\" name=\"" + entry + "\" />");
+	out.println(entry +": " + "<input type=\"text\" name=\"" + entry + "\" />" + "<br>");
 }
 
 %>

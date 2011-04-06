@@ -1,6 +1,7 @@
 <%@ page import="gui.DataForm" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="de.nixosoft.jlr.JLRConverter" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -23,8 +24,12 @@ for(String entry : data.getVars() ) {
 }
 
 String directory = application.getRealPath(filename).substring(0,application.getRealPath(filename).lastIndexOf("\\"));
-String outputFile = directory + "out.tex";
-data.getHandle().insertData(values, outputFile);
+String outputFile = directory + "\\out.tex";
+if(data.getHandle().insertData(values, outputFile) == true) {
+	out.println("success");
+} else {
+	out.println("fail");
+}
 
 %>
 
