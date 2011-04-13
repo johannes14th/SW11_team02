@@ -10,11 +10,12 @@ import java.util.Scanner;
 public class Data {
 	String input = "";
 	String saved = "";
-	String file_name = "latex1.tex";
+	String file_name = "";//"latex1.tex";
 	//TODO: in Constructor -> Namen da file_name hardcoded ist.
 
-	public Data()
+	public Data(String filename)
 	{
+		file_name = filename;
 		try
 		{
 			Scanner in = new Scanner(new File(file_name));

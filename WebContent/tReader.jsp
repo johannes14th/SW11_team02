@@ -10,7 +10,7 @@
 </head>
 <body>
 <%
-Data x = new Data();
+Data x = new Data("latex1.tex");
 %>
 <jsp:useBean id="formtext" class="editTemplate.Data" scope="session" />
 <%
