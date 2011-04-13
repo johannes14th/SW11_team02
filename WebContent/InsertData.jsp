@@ -10,55 +10,80 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
 </head>
 <body>
-<form action = "CreateFileDialog.jsp" method = post>
 <table>
 <%
 
 String inputfilename = request.getParameter("inputfilename");
 
-DataForm data = new DataForm("C:\\Users\\johannes\\SW11\\test.tex");//(application.getRealPath(inputfilename));
+DataForm data = new DataForm(application.getRealPath(inputfilename));
 
-String author = request.getParameter("author");
-String newfilename = request.getParameter("filename");
+String author = request.getParameter("Author");
+
+String newfilename = request.getParameter("Filename");
+
+String file;
+if(newfilename != "")
+  file = request.getParameter("Filename");
+else {
+  file = "out_"+inputfilename;
+}
+
+out.println("<tr><td><b>Metadata</b></td></tr>");
+
+for(String meta : data.getMetadata()) {
+	if(meta.equalsIgnoreCase("filename")) {
+		if(request.getParameter(meta) != null)
+			out.println("<tr><td>"+meta +":</td><td>" + file + "</td></tr>");
+	} else {
+	  out.println("<tr><td>"+meta +":</td><td>" + request.getParameter(meta) + "</td></tr>");
+	}
+}
+
+out.println("<tr><td>&nbsp</td></tr>");
+
+out.println("<tr><td><b>Variables</b></td></tr>");
 
 List<String> values = new ArrayList<String>();
 for(String entry : data.getVars() ) {
 	values.add(request.getParameter(entry));
-	out.println(entry +": " + request.getParameter(entry) + "<br>");
+	out.println("<tr><td>"+entry +":</td><td>" + request.getParameter(entry) + "</td></tr>");
 }
 
 String directory = application.getRealPath(inputfilename).substring(0,application.getRealPath(inputfilename).lastIndexOf("\\"));
 
 String outputFile;
-if(newfilename != null) {
+if(newfilename != "") {
 	outputFile = directory + "\\" +  newfilename;
 } else {
 	outputFile = directory + "\\out_" + inputfilename;
 }
 
+out.println("<tr><td>&nbsp</td></tr>");
+out.println("</table>");
+
 if(data.getHandle().insertData(values, outputFile) == true) {
-	out.println("success");
+	out.println("<table>");
+	out.println("<tr><td colspan=\"2\"><font color=\"green\">File successfully created!</font></td></tr>");
+	out.println("<tr><td colspan=\"2\"><b>Path: </b>"+outputFile+"</td></tr>");
+	out.println("</table>");
 } else {
-	out.println("fail");
+	out.println("<table>");
+	out.println("<tr><td colspan=\"2\"><font color=\"red\">File not successfully created!</font></td></tr>");
+	out.println("</table>");
 }
 
 if(data.getHandle().insertMetaData(author, System.currentTimeMillis()) == true) {
-	out.println("successMD");
+	//out.println("successMD");
 } else {
-	out.println("failMD");
+	//out.println("failMD");
 }
 
 
-out.println("<tr><td><input type = \"hidden\" name=\"tmpFilename\" value=\"" + outputFile + "\" /></td></tr>");
 
 %>
-
-<tr><td><input type="submit" name="button" value="save" /></td></tr>
-  </table>
-</form>
-
 
 </body>
 </html>
