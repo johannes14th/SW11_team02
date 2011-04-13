@@ -1,0 +1,16 @@
+@charset "UTF-8";
+body {
+	font-family: "Comic Sans MS", cursive;
+}
+a:link {
+	color: #FFF;
+}
+a:visited {
+	color: #333;
+}
+a:active {
+	color:#0C0;
+}
+a:hover {
+	color:#900;
+}
