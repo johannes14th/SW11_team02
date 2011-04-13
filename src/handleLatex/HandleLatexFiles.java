@@ -1,9 +1,14 @@
 package handleLatex;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -20,10 +25,10 @@ public class HandleLatexFiles {
 	
 	private File inputFile_;
 	private File outputFile_;
-	private File inputDirectory_;
 	private File outputDirectory_;
-	List<String> listVar_;
-	List<Integer> listInt_;
+	private List<String> listVar_;
+//	private List<Integer> listInt_;
+	private List<String> metadata_;
 	
 	/**
 	 * 
@@ -47,6 +52,9 @@ public class HandleLatexFiles {
 		inputFile_ = new File(filePath);
 		//outputFile_ = new File(directory + File.separator + "outtest.tex");
 //		outputFile_ = new File(outputDirectory_.getPath() + File.separator + "out_test.tex");
+		metadata_ = new ArrayList<String>();
+		metadata_.add("Filename");
+		metadata_.add("Author");
 				
 		scanLatex();
 				
@@ -65,6 +73,19 @@ public class HandleLatexFiles {
 		}
 		outputFile_ = new File(filePath);
 		return parseLatex(data);
+	}
+	
+	/**
+	 * 
+	 * sets metadata for file, including filename, author and date
+	 * 
+	 * @param filename filename for file
+	 * @param author author
+	 * @param date timestamp
+	 * @return true, if parsing works correct, else false
+	 */
+	public boolean insertMetaData(String author, Long date) {
+		return insertMetaDataToLatex(author, date.toString());
 	}
 	
 	/**
@@ -102,23 +123,6 @@ public class HandleLatexFiles {
 	public void setOutputFile(File output) {
 		outputFile_ = output;
 	}
-
-	/**
-	 * returns the directory of input
-	 * @return input directory
-	 */
-	public File getInputDirectory() {
-		return inputDirectory_;
-	}
-
-	/**
-	 * sets the input directory
-	 * 
-	 * @param directory the input directory to set
-	 */
-	public void setInputDirectory(File directory) {
-		inputDirectory_ = directory;
-	}
 	
 	/**
 	 * returns the directory of output
@@ -146,9 +150,18 @@ public class HandleLatexFiles {
 		return listVar_;
 	}
 	
-	public List<Integer> getIntegerList() {
-		return listInt_;
+	/**
+	 * returns a List with String, these are the variables of the template Latex file
+	 * 
+	 * @return java.util.List with Strings
+	 */
+	public List<String> getLatexMetadata() {
+		return metadata_;
 	}
+	
+//	public List<Integer> getIntegerList() {
+//		return listInt_;
+//	}
 	
 	private boolean parseLatex(HashMap<String, String> data) {
 		JLRConverter converter = new JLRConverter("::", ":::");
@@ -164,7 +177,7 @@ public class HandleLatexFiles {
 	private void scanLatex() {
 		Scanner input;
 		listVar_ = new ArrayList<String>();
-		listInt_ = new ArrayList<Integer>();
+		//listInt_ = new ArrayList<Integer>();
 		try {
 			input = new Scanner(inputFile_);
 			while(input.hasNextLine()) {
@@ -183,5 +196,35 @@ public class HandleLatexFiles {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private boolean insertMetaDataToLatex(String author, String date) {
+		try
+        {        
+			BufferedReader reader = new BufferedReader(new FileReader(outputFile_));
+			String line = "", text = "";
+			String meta = author + " " + date + "\n";
+			while((line = reader.readLine()) != null)
+            {
+				if(!line.equals("\\end{document}")) {
+					text += line + "\n";
+				} else {
+					text += meta;
+					text += "\\end{document}";
+				}
+            }
+			reader.close();
+
+			BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile_));
+			writer.write(text);
+			writer.flush();
+			writer.close();
+			return true;
+        }
+		catch (IOException ioe)
+        {
+			ioe.printStackTrace();
+			return false;
+        }
 	}
 }

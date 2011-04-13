@@ -14,22 +14,41 @@
 <body>
 <%
 
-String filename = request.getParameter("filename");
+String inputfilename = request.getParameter("inputfilename");
 
-DataForm data = new DataForm(application.getRealPath(filename));
+DataForm data = new DataForm(application.getRealPath(inputfilename));
+
+String author = request.getParameter("author");
+String newfilename = request.getParameter("filename");
+
 List<String> values = new ArrayList<String>();
 for(String entry : data.getVars() ) {
 	values.add(request.getParameter(entry));
 	out.println(entry +": " + request.getParameter(entry) + "<br>");
 }
 
-String directory = application.getRealPath(filename).substring(0,application.getRealPath(filename).lastIndexOf("\\"));
-String outputFile = directory + "\\out.tex";
+String directory = application.getRealPath(inputfilename).substring(0,application.getRealPath(inputfilename).lastIndexOf("\\"));
+
+String outputFile;
+if(newfilename != null) {
+	outputFile = directory + newfilename;
+} else {
+	outputFile = directory + "\\out_" + inputfilename;
+}
+
 if(data.getHandle().insertData(values, outputFile) == true) {
 	out.println("success");
 } else {
 	out.println("fail");
 }
+
+if(data.getHandle().insertMetaData(author, System.currentTimeMillis()) == true) {
+	out.println("successMD");
+} else {
+	out.println("failMD");
+}
+
+
 
 %>
 

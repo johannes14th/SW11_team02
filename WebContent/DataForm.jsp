@@ -15,13 +15,25 @@
 
 DataForm data = new DataForm(application.getRealPath("test.tex"));
 
+out.println("<p> METADATA: <br />");
+if(data.getMetadata().size() > 0) {
+	out.println("Filename: " + "<input type=\"text\" name=\"" + "filename" + "\" />" + "<br>");
+}
+if(data.getMetadata().size() > 1) {
+	out.println("Author: " + "<input type=\"text\" name=\"" + "author" + "\" />" + "<br>");
+}
+
+out.println("</p>");
+
+out.println("<p> Variables: <br />");
 for(String entry : data.getVars() ) {
 	out.println(entry +": " + "<input type=\"text\" name=\"" + entry + "\" />" + "<br>");
 }
+out.println("</p>");
 
 %>
 <br>
-  <input type = "hidden" name="filename" value="test.tex" />
+  <input type = "hidden" name="inputfilename" value="test.tex" />
   <input type="submit" name="button" value="submit" />
 </form>
 
