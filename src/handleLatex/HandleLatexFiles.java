@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import CreateTemplate.Template;
+
 import de.nixosoft.jlr.JLRConverter;
 
 /**
@@ -226,5 +228,65 @@ public class HandleLatexFiles {
 			ioe.printStackTrace();
 			return false;
         }
+	}
+
+	public String includeTemplate() {
+		Scanner input;
+		listVar_ = new ArrayList<String>();
+		String value = "";
+		
+		String includedTemplate = "";
+		
+		Template temp = null;
+		try {
+			input = new Scanner(inputFile_);
+			while(input.hasNextLine()) {
+			    String nextToken = input.nextLine();
+			    
+			    boolean tmp = nextToken.contains("includeTemplate(");
+			    
+			    if(!tmp) {
+			      includedTemplate += nextToken;
+			      includedTemplate += "\n";
+			    }
+			    
+			    while( tmp && nextToken.contains(");")) {
+			    	String includeStart = "includeTemplate(";
+			    	String includeEnd = ");";
+					    int start = nextToken.indexOf(includeStart);
+					    int end = nextToken.indexOf(includeEnd);
+
+					    value = nextToken.substring(start + includeStart.length(),end);
+					    
+					    temp = new Template(value);
+					    
+					    includedTemplate += temp.getContent();
+					    includedTemplate += "\n";
+					    
+					    nextToken = nextToken.substring(end + includeEnd.length(), nextToken.length());
+				    }
+			}
+
+			input.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		Template template = new Template(inputFile_.getName());
+		template.setContent(includedTemplate);
+		
+		return includedTemplate;
+	}
+
+	public Object checkIncludedTemplate(String newTemplateName, String includedName) {
+		// TODO Auto-generated method stub
+		
+		Template newTemplate = new Template(newTemplateName);
+		Template included = new Template(includedName);
+		
+		if(newTemplate.getContent().contains(included.getContent()))
+			return true;
+		
+		return false;
 	}
 }

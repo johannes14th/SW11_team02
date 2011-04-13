@@ -13,7 +13,7 @@
 <form action = "InsertData.jsp" method = post>
 <%
 
-DataForm data = new DataForm(application.getRealPath("test.tex"));
+DataForm data = new DataForm("C:\\Users\\johannes\\SW11\\test.tex");//(application.getRealPath("test.tex"));
 
 out.println("<p> METADATA: <br />");
 if(data.getMetadata().size() > 0) {

@@ -69,6 +69,7 @@ public class Template {
 		    while ((line = reader.readLine()) != null)
 		    {
 		      sb.append(line);
+		      sb.append("\n");
 		    }
 		    reader.close();
 		} catch (FileNotFoundException e) {
@@ -90,6 +91,22 @@ public class Template {
 			return true;
 		
 		return false;
+	}
+
+	public void setContent(String content, int begin) {
+		// TODO Auto-generated method stub
+		BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(file));
+			
+			System.out.println(content + " " + begin + " " + content.length());
+			
+			writer.write(content,begin,content.length());
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

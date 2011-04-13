@@ -1,0 +1,53 @@
+\documentclass{letter} 
+
+\documentclass{letter}
+ 
+
+ :: include1 :::
+
+
+\end{letter}
+
+
+\documentclass{letter}
+ 
+
+ :: include2 :::
+
+
+\end{letter}
+
+
+\usepackage{invoice} 
+\address{Josh Parker \\
+         5650 Webster Ave \\
+         West Palm Beach, Florida 33405 \\
+         JParker@mail.com} 
+\date{31-May-2010} 
+
+\begin{document} 
+\begin{letter}{::Customer name::: \\ 
+               ::Customer street::: \\ 
+               ::Customer zip:::} 
+\opening{Invoice no. ::Number:::} 
+Dear customer,
+
+... 
+
+\documentclass{letter}
+ 
+
+ :: include2 :::
+
+
+\end{letter}
+
+
+\begin{invoice}{Euro}{0} 
+\ProjectTitle{Example Project} 
+\Fee{::Development:::} {::Price:::} {1} 
+\end{invoice} 
+
+\closing{Best regards} 
+\end{letter} 
+\end{document} 

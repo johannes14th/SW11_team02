@@ -12,11 +12,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action = "CreateFileDialog.jsp" method = post>
+<table>
 <%
 
 String inputfilename = request.getParameter("inputfilename");
 
-DataForm data = new DataForm(application.getRealPath(inputfilename));
+DataForm data = new DataForm("C:\\Users\\johannes\\SW11\\test.tex");//(application.getRealPath(inputfilename));
 
 String author = request.getParameter("author");
 String newfilename = request.getParameter("filename");
@@ -31,7 +33,7 @@ String directory = application.getRealPath(inputfilename).substring(0,applicatio
 
 String outputFile;
 if(newfilename != null) {
-	outputFile = directory + newfilename;
+	outputFile = directory + "\\" +  newfilename;
 } else {
 	outputFile = directory + "\\out_" + inputfilename;
 }
@@ -49,8 +51,13 @@ if(data.getHandle().insertMetaData(author, System.currentTimeMillis()) == true) 
 }
 
 
+out.println("<tr><td><input type = \"hidden\" name=\"tmpFilename\" value=\"" + outputFile + "\" /></td></tr>");
 
 %>
+
+<tr><td><input type="submit" name="button" value="save" /></td></tr>
+  </table>
+</form>
 
 
 </body>
