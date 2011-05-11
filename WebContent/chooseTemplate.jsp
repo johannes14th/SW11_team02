@@ -11,11 +11,14 @@
 
 <h1>Choose Template:</h1>
 
-
+<% 
+out.println("TODO: fetch files from correct folder.");
+out.println(application.getRealPath("Template1.tex")); %>
 <form>
 
   <select name=file_name>
 <%
+
 ChooseTemplate servTempl= new ChooseTemplate("data//server_templates",".tex");
 
 servTempl.getTemplateNames();
