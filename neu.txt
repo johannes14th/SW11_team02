@@ -1,0 +1,128 @@
+commit bd600d9099106298e2ebeab951d1e38545741ff9
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 13 21:43:47 2011 +0200
+
+    Added edit to creating File
+
+commit 9cfb20218ab5278d15355fbfc94f034160a0fb6c
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 13 20:50:40 2011 +0200
+
+    System asks for filename
+
+commit 85ca4ed68384daa355d62817d6cc110b3124126d
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 13 16:19:32 2011 +0200
+
+    Include Templates in other Templates
+
+commit 2d41cc4049fc19b3236b85be5e2fe62c689e1e8f
+Merge: 39772a7 cf2597f
+Author: Berni <Berni@gwlan2-84.tu-graz.ac.at>
+Date:   Wed Apr 13 15:56:56 2011 +0200
+
+    Merge branch 'refs/heads/master' of https://berni89@github.com/johannes14th/SW11_team02.git
+
+commit 39772a70a0a7c8c27aa3ccc8ecb34d6b1766b0cf
+Author: Berni <Berni@gwlan2-84.tu-graz.ac.at>
+Date:   Wed Apr 13 15:55:35 2011 +0200
+
+    file zipping and homepage added
+
+commit cf2597f24bc93e717c3b70d7fff79092f38359dd
+Author: ThomasFoessl <t.foessl@student.tugraz.at>
+Date:   Wed Apr 13 13:59:41 2011 +0200
+
+    EditTemplate (Luis, Christof)
+
+commit e8f50254627ebd21b5598aaa422198a68c053f7b
+Author: Berni <Berni@gwlan2-84.tu-graz.ac.at>
+Date:   Wed Apr 13 13:11:33 2011 +0200
+
+    GUI index
+
+commit 9ee27c49ba593305af9e26bd589a0a7fcf71897e
+Author: ThomasFoessl <t.foessl@student.tugraz.at>
+Date:   Wed Apr 13 11:53:04 2011 +0200
+
+    EditTemplate
+
+commit 3ee9f57904a8f332d0e126e28c9f08e9d83e8a20
+Author: ThomasFoessl <t.foessl@student.tugraz.at>
+Date:   Wed Apr 13 10:55:59 2011 +0200
+
+    insert metadata to latex files
+
+commit 3f33da9122b9514850238875bcf9463e4149a5fa
+Merge: d683582 3872ba2
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 6 16:49:39 2011 +0200
+
+    Merge branch 'master' of ssh://github.com/johannes14th/SW11_team02
+
+commit d6835822f38197cc657113fd28da6c3426f83d7f
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 6 16:44:32 2011 +0200
+
+    Data Forms finished
+
+commit 3872ba2ef1f83ba401dc0613e58108a0d4bce00f
+Merge: 1e7c9f8 09d1588
+Author: stefan <stefan@ubuntu.ubuntu-domain>
+Date:   Wed Apr 6 16:03:37 2011 +0200
+
+    Merge branch 'branch1'
+
+commit 09d1588077e227f9d1e5044ebe7efaee7a4a32b3
+Author: stefan <stefan@ubuntu.ubuntu-domain>
+Date:   Wed Apr 6 15:53:02 2011 +0200
+
+    added ChooseTemplate
+
+commit 1e7c9f81de468a390dbc36807772fca440003006
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 6 15:49:14 2011 +0200
+
+    Template is like a formular with placeholder-fields
+
+commit c43b2d2ec9abd043dc84bd1102dbad177c8715d8
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 6 13:10:55 2011 +0200
+
+    Customer changes added
+
+commit 14ef1879a138542f929eb406f1419b8ff4a72d27
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 6 12:56:48 2011 +0200
+
+    CreateTemplate.jsp update
+
+commit 7e49a6bc0e8fb17a27e76743a5a7ccd0f458f54a
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 6 12:47:32 2011 +0200
+
+    Removed absolute path in createTemplate.jsp
+
+commit 5256c64723478adf39fb0b6ebd1a4c184a3b097b
+Author: Berni <Berni@gwlan4-060.tu-graz.ac.at>
+Date:   Wed Apr 6 11:58:41 2011 +0200
+
+    HandleLatexFiles updated
+
+commit 6857beadc38115ecb8db9570bfc30148c8d4db8f
+Author: Berni <Berni@gwlan4-060.tu-graz.ac.at>
+Date:   Wed Apr 6 11:36:21 2011 +0200
+
+    files for handling latex
+
+commit b16c315a8a5b88c7b670d746eb9debf4ffff11ff
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 6 09:19:38 2011 +0200
+
+    Create Template
+
+commit e707e4291d75231cac0b117faf97866c8f6f6a44
+Author: Johannes Thonhauser <johannes14th@hotmail.com>
+Date:   Wed Apr 6 09:18:49 2011 +0200
+
+    first commit
