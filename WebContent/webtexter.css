@@ -1,8 +1,6 @@
 @charset "UTF-8";
 body {
 	font-family: "Comic Sans MS", cursive;
-	margin: 0;
-
 }
 a:link {
 	color: #FFF;
@@ -16,6 +14,17 @@ a:active {
 a:hover {
 	color:#900;
 }
+
+#banner {
+margin:0;
+}
+
+#banner td {
+background-image:url(images/banner_right.gif);
+background-repeat:repeat-x;
+}
+
+
 
 #menu {
 	background: #000066;
