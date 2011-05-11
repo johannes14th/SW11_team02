@@ -11,6 +11,7 @@ public class FileHandler {
 		return path;
 	}
 	
+	
 	public static String getUserPath(String username) {
 		String path = System.getProperty("wtp.deploy");
 		String separator = System.getProperty("file.separator");
