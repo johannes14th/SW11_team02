@@ -11,7 +11,14 @@ String file_name_tex = "test.tex";
 File file;
 String path = "C:/pdfs/";
 
+	public CreatorPdf(String filename) {
+		
+	}
 
+	public CreatorPdf() {
+		
+	}
+	
 	public void setPath(){
 		file = new File("C:" + File.separator + "pdfs"); //TODO Path on server
 	}
@@ -27,6 +34,8 @@ String path = "C:/pdfs/";
 			pdfGen.generate(template, file, file);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 		File pdf1 = pdfGen.getPDF();
