@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 
 
 public class TestHandleLatex extends TestCase{
-	
+	/*
 	public void testFileInput(){
 		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\Uni\\workspace\\latex.tex");
 		assertNotNull(latex.getInputFile());
@@ -35,5 +35,12 @@ public class TestHandleLatex extends TestCase{
 		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\Uni\\workspace\\latex.tex");
 		assertEquals(true, latex.insertData(latex.getLatexVariables(), "C:\\Users\\Uni\\workspace\\latex_meta.tex"));
 		assertEquals(true, latex.insertMetaData("David", System.currentTimeMillis()));
+	}*/
+	
+	public void testInclude() {
+		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\johannes\\SW11\\test.tex");
+		latex.includeTemplate();
+		assertEquals(true,latex.includeTemplate().contains(" :: include1 :::"));
+		assertEquals(true,latex.checkIncludedTemplate("C:\\Users\\johannes\\SW11\\test.tex","C:\\Users\\johannes\\SW11\\toInclude.tex"));
 	}
 }

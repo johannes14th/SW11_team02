@@ -8,33 +8,58 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+function validateForm()
+{
+var x=document.forms["DataForm"]["Filename"].value
+if (x==null || x=="")
+  {
+  alert("Filename must filled out!");
+  return false;
+  }
+}
+
+</script>
+
 </head>
 <body>
-<form action = "InsertData.jsp" method = post>
+
+<form name = "DataForm" action = "InsertData.jsp" method = "post" onSubmit="return validateForm()">
+<table>
 <%
 
 DataForm data = new DataForm(application.getRealPath("test.tex"));
 
-out.println("<p> METADATA: <br />");
-if(data.getMetadata().size() > 0) {
-	out.println("Filename: " + "<input type=\"text\" name=\"" + "filename" + "\" />" + "<br>");
-}
-if(data.getMetadata().size() > 1) {
-	out.println("Author: " + "<input type=\"text\" name=\"" + "author" + "\" />" + "<br>");
+out.println("<tr><td><b>Metadata</b></td></tr>");
+
+for(String meta : data.getMetadata()) {
+	String metaData = "";
+	
+	if(request.getParameter(meta) != null)
+		metaData = request.getParameter(meta);
+	
+	out.println("<tr><td>"+meta +":</td><td>" + "<input type=\"text\" name=\"" + meta + "\" value=\"" + metaData  +  "\" />" + "</td></tr>");
+	
 }
 
-out.println("</p>");
+out.println("<tr><td>&nbsp</td></tr>");
 
-out.println("<p> Variables: <br />");
+out.println("<tr><td><b>Variables</b></td></tr>");
 for(String entry : data.getVars() ) {
-	out.println(entry +": " + "<input type=\"text\" name=\"" + entry + "\" />" + "<br>");
+	
+	String parameter = "";
+	
+	if(request.getParameter(entry) != null)
+		parameter = request.getParameter(entry);
+	
+	out.println("<tr><td>"+entry +":</td><td>" + "<input type=\"text\" name=\"" + entry + "\" value=\"" + parameter  +  "\" />" + "</td></tr>");
 }
-out.println("</p>");
 
 %>
-<br>
-  <input type = "hidden" name="inputfilename" value="test.tex" />
-  <input type="submit" name="button" value="submit" />
+<tr><td><input type = "hidden" name="inputfilename" value="test.tex" /></td></tr>
+<tr><td><input type="submit" name="button" value="submit" /></td></tr>
+</table>
 </form>
 
 </body>
