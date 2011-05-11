@@ -11,9 +11,6 @@ import junit.framework.TestCase;
 public class PdfCreatorTestCases extends TestCase {
 	CreatorPdf test = new CreatorPdf();
 	
-	public void testCreate () {
-		
-	}
 	
 	public void testFilePdfExt() {
 		test.createPdf();
