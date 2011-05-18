@@ -39,8 +39,8 @@ public class TestHandleLatex extends TestCase{
 	
 	public void testInclude() {
 		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\johannes\\SW11\\test.tex");
-		latex.includeTemplate();
-		assertEquals(true,latex.includeTemplate().contains(" :: include1 :::"));
+		latex.includeTemplate("C:\\Users\\johannes\\SW11\\");
+		assertEquals(true,latex.includeTemplate("C:\\Users\\johannes\\SW11\\").contains(" :: include1 :::"));
 		assertEquals(true,latex.checkIncludedTemplate("C:\\Users\\johannes\\SW11\\test.tex","C:\\Users\\johannes\\SW11\\toInclude.tex"));
 	}
 }

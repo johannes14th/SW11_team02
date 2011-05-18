@@ -44,7 +44,9 @@ public class HandleLatexFiles {
 	 * 
 	 */
 	public HandleLatexFiles(String filePath) {
-		String directory = filePath.substring(0,filePath.lastIndexOf("\\"));
+		String directory = filePath.substring(0,filePath.lastIndexOf(System.getProperty("file.separator")));
+		
+		System.out.println("HALLO" + filePath.lastIndexOf(System.getProperty("file.separator") +  " " + filePath.length()));
 		
 //		String[] splitFilename = filePath.split("/");
 //		String directory = splitFilename[splitFilename.length-1];
@@ -73,6 +75,7 @@ public class HandleLatexFiles {
 		for(int i = 0; i < listVar_.size(); i++) {
 			data.put(listVar_.get(i), input.get(i));
 		}
+		
 		outputFile_ = new File(filePath);
 		return parseLatex(data);
 	}
@@ -230,9 +233,8 @@ public class HandleLatexFiles {
         }
 	}
 
-	public String includeTemplate() {
+	public String includeTemplate(String path) {
 		Scanner input;
-		listVar_ = new ArrayList<String>();
 		String value = "";
 		
 		String includedTemplate = "";
@@ -258,7 +260,18 @@ public class HandleLatexFiles {
 
 					    value = nextToken.substring(start + includeStart.length(),end);
 					    
-					    temp = new Template(value);
+					    System.out.println(value);
+					    
+					    String realPath = "";
+					    
+					    if(path != "")
+					      realPath = path + System.getProperty("file.separator") + value;
+					    else
+					      realPath = value;
+					    
+					    System.out.println("REALPATH: " + realPath);
+					    
+					    temp = new Template(realPath);
 					    
 					    includedTemplate += temp.getContent();
 					    includedTemplate += "\n";
@@ -272,7 +285,18 @@ public class HandleLatexFiles {
 			e.printStackTrace();
 		}
 		
-		Template template = new Template(inputFile_.getName());
+		
+	    String realOutputPath = "";
+	    
+	    if(path != "")
+	    	realOutputPath = path + System.getProperty("file.separator") + inputFile_.getName();
+	    else
+	    	realOutputPath = value;
+
+		System.out.println("Filename: " + realOutputPath);
+
+	    
+		Template template = new Template(realOutputPath);
 		template.setContent(includedTemplate);
 		
 		return includedTemplate;

@@ -1,6 +1,7 @@
 <%@ page import="gui.DataForm" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="pdfCreator.CreatorPdf" %>
 <%@ page import="de.nixosoft.jlr.JLRConverter" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -64,11 +65,23 @@ if(newfilename != "") {
 out.println("<tr><td>&nbsp</td></tr>");
 out.println("</table>");
 
+System.out.println("LISTENGRÖSSE: " + values.size());
+System.out.println("LISTENGRÖSSE - HANDLE: " + data.getHandle().getLatexVariables().size());
+
+
 if(data.getHandle().insertData(values, outputFile) == true) {
 	out.println("<table>");
 	out.println("<tr><td colspan=\"2\"><font color=\"green\">File successfully created!</font></td></tr>");
 	out.println("<tr><td colspan=\"2\"><b>Path: </b>"+outputFile+"</td></tr>");
+	
+	out.println("<form action=\"getPDF.jsp\" method =\"post\">");
+	out.println("<input type=\"hidden\" name=\"directory\" value=\"" + directory + "\">");
+	out.println("<input type=\"hidden\" name=\"filename\" value=\"" + newfilename + "\">");
+	out.println("<input type=\"submit\" value=\"createPdf\">");
+	out.println("</form>");
 	out.println("</table>");
+
+	
 } else {
 	out.println("<table>");
 	out.println("<tr><td colspan=\"2\"><font color=\"red\">File not successfully created!</font></td></tr>");

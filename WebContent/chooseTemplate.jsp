@@ -1,4 +1,5 @@
 <%@page import="chooseTemplate.ChooseTemplate"%>
+<%@ page import="fileHandler.FileHandler" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,17 +10,16 @@
 </head>
 <body>
 
-<h1>Choose Template:</h1>
+<h1>Template Assistant:</h1>
 
-<% 
-out.println("TODO: fetch files from correct folder.");
-out.println(application.getRealPath("Template1.tex")); %>
-<form>
+<form action = "DataForm.jsp" method = "post">
 
   <select name=file_name>
 <%
 
-ChooseTemplate servTempl= new ChooseTemplate("data//server_templates",".tex");
+
+
+ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getSystemPath(),".tex");
 
 servTempl.getTemplateNames();
 
@@ -36,7 +36,6 @@ for(int i = 0; i < servTempl.getSize(); i++)
         
  <% 
  String file_name = request.getParameter("file_name");
- out.println(file_name);
  servTempl.setFileName(file_name);
  %>
 

@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.File;
 import java.util.List;
 
 import handleLatex.HandleLatexFiles;
@@ -21,6 +22,14 @@ public class DataForm {
 		 handle_ = new HandleLatexFiles(absolutePath);
 		 vars_ = handle_.getLatexVariables();
 		 metadata_ = handle_.getLatexMetadata();
+		 System.out.println("INCLUDE TEMPLATE");
+		 
+		 int end = absolutePath.lastIndexOf(File.separator);
+		 String path = absolutePath.substring(0,end);
+		 
+		 System.out.println("PATH: " + path);
+		 
+		 handle_.includeTemplate(path);
 	}
 
 	/**

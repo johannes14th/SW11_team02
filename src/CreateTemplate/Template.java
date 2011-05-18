@@ -93,7 +93,7 @@ public class Template {
 		return false;
 	}
 
-	public void setContent(String content, int begin) {
+	/*public void setContent(String content, int begin) {
 		// TODO Auto-generated method stub
 		BufferedWriter writer = null;
 		try {
@@ -107,6 +107,6 @@ public class Template {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 }

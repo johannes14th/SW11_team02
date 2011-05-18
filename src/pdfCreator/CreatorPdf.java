@@ -8,11 +8,13 @@ import de.nixosoft.jlr.JLRGenerator;
 public class CreatorPdf {
 String file_name_pdf = "test.pdf";
 String file_name_tex = "test.tex";
-File file;
+File filePDF;
+File fileTex;
 String path = "C:/pdfs/";
 
-	public CreatorPdf(String filename) {
-		
+	public CreatorPdf(String path) {
+		filePDF = new File(path + File.separator + "pdfs");
+		fileTex = new File(path);
 	}
 
 	public CreatorPdf() {
@@ -20,25 +22,30 @@ String path = "C:/pdfs/";
 	}
 	
 	public void setPath(){
-		file = new File("C:" + File.separator + "pdfs"); //TODO Path on server
+		filePDF = new File("C:" + File.separator + "pdfs"); //TODO Path on server
 	}
 	
-	public void createPdf(){
-		setPath();
-		File template = new File(file + File.separator + file_name_tex);
+	public File createPdf(String filename){
+		//setPath();
+		File template = new File(fileTex + File.separator + filename);
+		System.out.println("FILENAME: " + fileTex + File.separator + filename);
+		//File template = new File(filename);
 		
 		JLRGenerator pdfGen = new JLRGenerator();
 		pdfGen.deleteTempTexFile(false);
 		
 		try {
-			pdfGen.generate(template, file, file);
+			pdfGen.generate(template.getAbsoluteFile(), filePDF, fileTex);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		File pdf1 = pdfGen.getPDF();
+		
+		System.out.println("Fertig");
+		
+		return pdfGen.getPDF();
 
 
 	}
@@ -57,7 +64,7 @@ String path = "C:/pdfs/";
 	}
 
 	public String getPathString() {
-		String return_file = file.getAbsolutePath(); 
+		String return_file = filePDF.getAbsolutePath(); 
 		return return_file;
 	}
 

@@ -5,14 +5,16 @@ import junit.framework.TestCase;
 public class TestFileHandler extends TestCase {
 //Must run on server. No testcases possible!!!!
 	//But we've tried!!! ;-)
-	String expectedSystemPath;
+	String expectedSystemPathWin;
+	String expectedSystemPathLin;
 	String expectedUserPath;
 	String directory_name;
 	//User user;
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		expectedSystemPath = "";
+		expectedSystemPathWin = "";
+		expectedSystemPathLin = "";
 		expectedUserPath = "";
 		directory_name = "test_make_dir";
 		//user = new User("Sepp");
@@ -22,8 +24,11 @@ public class TestFileHandler extends TestCase {
 	{
 		//check if empty
 		//assertNotNull(FileHandler.getSystemPath());
-		//check if valid
-		//assertEquals(FileHandler.getSystemPath(), expectedSystemPath);
+		//check if valid		
+		
+		//int start = FileHandler.getSystemPath().indexOf("\\.metadata");
+		//String compare = FileHandler.getSystemPath().substring(start, FileHandler.getSystemPath().length());
+		//assertEquals(compare, expectedSystemPathWin);
 	}
 	
 	public void testGetUserPath()

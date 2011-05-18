@@ -21,14 +21,28 @@ if (x==null || x=="")
 
 </head>
 <body>
+<%
+if(request.getParameter("tmpFilename") != null) {
+	out.println("<h1>Create File:</h1>");
+} else {
+	out.println("<h1>Create Template:</h1>");
+}
+
+%>
+
+<table>
+<tr><td>Please take care of creating valid Latex files, with extension tex!</td></tr>
+
+</table>
+
 
 <form name="CheckFileDialog" action ="createTemplate.jsp" method="post" onSubmit = "return validateForm()">
 
 <%
 if(request.getParameter("tmpFilename") != null) {
-  out.println("Create File:");
+  out.println("Filename:");
 } else {
-  out.println("Create Template:");	
+  out.println("Templatename:");	
 }
 %>
 

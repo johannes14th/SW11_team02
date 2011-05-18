@@ -29,7 +29,11 @@ if (x==null || x=="")
 <table>
 <%
 
-DataForm data = new DataForm(application.getRealPath("test.tex"));
+String file_name = request.getParameter("file_name");
+
+DataForm data = new DataForm(application.getRealPath(file_name));
+
+//DataForm data = new DataForm(application.getRealPath("neuesTemplate3.tex"));
 
 out.println("<tr><td><b>Metadata</b></td></tr>");
 
@@ -56,8 +60,10 @@ for(String entry : data.getVars() ) {
 	out.println("<tr><td>"+entry +":</td><td>" + "<input type=\"text\" name=\"" + entry + "\" value=\"" + parameter  +  "\" />" + "</td></tr>");
 }
 
+
+out.println("<tr><td><input type = \"hidden\" name=\"inputfilename\" value=\"" + file_name + "\" /></td></tr>");
+
 %>
-<tr><td><input type = "hidden" name="inputfilename" value="test.tex" /></td></tr>
 <tr><td><input type="submit" name="button" value="submit" /></td></tr>
 </table>
 </form>
