@@ -5,8 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript">
+function reload() {
+	parent.frames['leftFrame'].location.reload();
+}
+
+</script>
+
 </head>
-<body>
+<body onLoad="reload()">
 
 <table>
 <tr><td>Welcome <%= session.getAttribute("username") %> to the user page!</td></tr>
