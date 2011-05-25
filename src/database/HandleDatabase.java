@@ -1,5 +1,6 @@
 package database;
 
+import fileHandler.FileHandler;
 import iaik.asn1.structures.AlgorithmID;
 
 import java.security.MessageDigest;
@@ -31,6 +32,8 @@ public class HandleDatabase {
 		parameters.add(generateHash(password));
 		
 		database_.executeStatement(sql, parameters);
+		
+		FileHandler.getUserPath(username);
 	}
 
 	public boolean databaseHasEntry(String username) {

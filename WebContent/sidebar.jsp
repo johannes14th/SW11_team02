@@ -16,6 +16,8 @@ body{
 </head>
 <body>
 <ul id="menu">
+	<li><a href="main.html" target="mainFrame">Home</a></li>
+
 <%
 String status = (String) session.getAttribute("loginstatus");
 
@@ -36,12 +38,11 @@ if(loggedIn) {
 	out.println("<li><a href=\"editTemplate.jsp\" target=\"mainFrame\">Edit Template</a></li>");
 	out.println("<li><a href=\"logout.jsp\" target=\"mainFrame\">Logout</a></li>");
 } else {
-	out.println("<li><a href=\"loginForm.jsp\" target=\"mainFrame\">login</a></li>");
+	out.println("<li><a href=\"loginForm.jsp\" target=\"mainFrame\">Login</a></li>");
+	out.println("<li><a href=\"login.jsp\" target=\"mainFrame\">Register</a></li>");
 }
 
 %>
-
-	<li><a href="main.html" target="mainFrame">Home</a></li>
 
 
 	<li><a href="impressum.jsp" target="mainFrame">Impressum</a></li>
