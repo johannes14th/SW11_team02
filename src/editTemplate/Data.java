@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import fileHandler.FileHandler;
+
 public class Data {
 	String input = "";
 	String saved = "";
@@ -32,6 +34,27 @@ public class Data {
 		}
 	}
 
+	public Data(String filename, String username)
+	{
+		file_name = FileHandler.getUserPath(username) + File.separator +  filename;
+		
+		try
+		{
+			Scanner in = new Scanner(new File(file_name));
+			while (in.hasNextLine())
+			{
+				input = input + in.nextLine() + "\n";
+			}
+			in.close();
+		}
+		
+		catch (Exception e)
+		{
+			input = "Loading Data Failed";
+		}
+	}
+
+	
 
     public void setInput( String value )
     {

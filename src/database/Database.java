@@ -83,6 +83,7 @@ public class Database {
 		try {
 			stmt = con_.prepareStatement(sql);
 			
+			if(parameters != null)
 			for(int index = 1 ; index <= parameters.size(); index++)
 			 stmt.setString(index, parameters.elementAt(index-1));
 			

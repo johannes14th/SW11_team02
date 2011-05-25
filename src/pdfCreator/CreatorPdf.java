@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import chooseTemplate.ChooseTemplate;
 import de.nixosoft.jlr.JLRGenerator;
+import fileHandler.FileHandler;
 
 public class CreatorPdf {
 String file_name_pdf = "test.pdf";
@@ -25,7 +26,7 @@ String path = "C:/pdfs/";
 		filePDF = new File("C:" + File.separator + "pdfs"); //TODO Path on server
 	}
 	
-	public File createPdf(String filename){
+	public File createPdf(String filename,String username){
 		//setPath();
 		File template = new File(fileTex + File.separator + filename);
 		System.out.println("FILENAME: " + fileTex + File.separator + filename);
@@ -33,6 +34,14 @@ String path = "C:/pdfs/";
 		
 		JLRGenerator pdfGen = new JLRGenerator();
 		pdfGen.deleteTempTexFile(false);
+	
+		File pdf;
+		
+		if(username != "")
+			pdf = new File(FileHandler.getUserPath(username));
+		else
+			pdf = filePDF;
+		
 		
 		try {
 			pdfGen.generate(template.getAbsoluteFile(), filePDF, fileTex);
@@ -46,8 +55,6 @@ String path = "C:/pdfs/";
 		System.out.println("Fertig");
 		
 		return pdfGen.getPDF();
-
-
 	}
 
 	public String getPdfName() {		
