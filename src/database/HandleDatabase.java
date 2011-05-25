@@ -1,6 +1,5 @@
 package database;
 
-import fileHandler.FileHandler;
 import iaik.asn1.structures.AlgorithmID;
 
 import java.security.MessageDigest;
@@ -24,16 +23,15 @@ public class HandleDatabase {
 		database_ = new Database(con);
 	}
 
-	public void createAccount(String username, String password) {
+	public void createAccount(String username, String password, String language) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO users (username, pass) VALUES (?,?) ";
+		String sql = "INSERT INTO users (username, pass, language) VALUES (?,?,?) ";
 		Vector<String> parameters = new Vector<String>();
 		parameters.add(username);
 		parameters.add(generateHash(password));
+		parameters.add(language);
 		
 		database_.executeStatement(sql, parameters);
-		
-		FileHandler.getUserPath(username);
 	}
 
 	public boolean databaseHasEntry(String username) {
@@ -70,27 +68,6 @@ public class HandleDatabase {
         
 	
 		return new String(rawHash);
-	}
-
-	public boolean checkPwd(String username, String pwd) {
-		// TODO Auto-generated method stub
-		Vector<String> parameters = new Vector<String>();
-		parameters.add(username);
-		ResultSet tmp = database_.executeQuery("SELECT pass FROM users WHERE username = ?", parameters);
-				
-		String hash = generateHash(pwd);
-		String expectedPwd = null;
-		
-		try {
-			tmp.next();
-			expectedPwd = tmp.getString("pass");
-			return expectedPwd.equals(hash) ? true : false;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return false;
 	}
 
 }

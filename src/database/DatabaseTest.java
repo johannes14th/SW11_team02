@@ -13,9 +13,12 @@ public class DatabaseTest extends TestCase {
 	
 	public void testDatabaseCreation() {
 		Database database = new Database();
-		database.createUserTable();
 		
+		database.createUserTable();
 		assertEquals(true, database.tableExists("users"));
+		
+		database.createMessagesTable();
+		assertEquals(true, database.tableExists("messages"));
 	}
 
 }
