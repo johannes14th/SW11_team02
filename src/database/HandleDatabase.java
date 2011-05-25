@@ -69,5 +69,28 @@ public class HandleDatabase {
 	
 		return new String(rawHash);
 	}
+	
+	  public boolean checkPwd(String username, String pwd) {
+		  // TODO Auto-generated method stub
+		  Vector<String> parameters = new Vector<String>();
+		  parameters.add(username);
+		  ResultSet tmp = database_.executeQuery("SELECT pass FROM users WHERE username = ?", parameters);
+        
+		  String hash = generateHash(pwd);
+		  String expectedPwd = null;
+
+		    
+		  try {
+			  tmp.next();
+			  expectedPwd = tmp.getString("pass");
+			  return expectedPwd.equals(hash) ? true : false;
+		  } catch (SQLException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+		  }
+		  return false;
+	  }
+
+		 
 
 }

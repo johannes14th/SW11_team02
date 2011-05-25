@@ -2,18 +2,48 @@ package handleLatex;
 
 import java.io.File;
 
+import javax.xml.transform.Templates;
+import javax.xml.transform.sax.TemplatesHandler;
+
+import CreateTemplate.Template;
+
+import fileHandler.FileHandler;
+
 import junit.framework.TestCase;
 
 
 public class TestHandleLatex extends TestCase{
-	/*
+	
+	Template template_;
+	Template toInclude_;
+	String path_;
+	
+	public void setUp() {
+		try {
+			super.setUp();
+			File file = new File("");
+			template_ = new Template(file.getAbsolutePath() + File.separator + "template.tex");
+			template_.createTemplate();
+			template_.setContent("includeTemplate(toInclude.tex);");
+			
+			File file2 = new File("");
+			toInclude_ = new Template(file2.getAbsolutePath() + File.separator + "toInclude.tex");
+			toInclude_.createTemplate();
+			toInclude_.setContent("::include1:::");
+			path_ = file2.getAbsolutePath();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void testFileInput(){
-		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\Uni\\workspace\\latex.tex");
+		HandleLatexFiles latex = new HandleLatexFiles(template_.getAbsolutePath());
 		assertNotNull(latex.getInputFile());
 	}
 
 	public void testFileFormat(){
-		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\Uni\\workspace\\latex.tex");
+		HandleLatexFiles latex = new HandleLatexFiles(template_.getAbsolutePath());
 		File file = latex.getInputFile();
 		String filename = file.getName();
 		String format = filename.substring(filename.length() - 4, filename.length());
@@ -21,26 +51,20 @@ public class TestHandleLatex extends TestCase{
 	}
 	
 	public void testOutputDirectory(){
-		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\Uni\\workspace\\latex.tex");
+		HandleLatexFiles latex = new HandleLatexFiles(template_.getAbsolutePath());
 		assertNotNull(latex.getOutputDirectory());
 		
 	}
 	
 	public void testParsing(){
-		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\Uni\\workspace\\latex.tex");
-		assertEquals(true, latex.insertData(latex.getLatexVariables(), "C:\\Users\\Uni\\workspace\\latex_out.tex"));
+		HandleLatexFiles latex = new HandleLatexFiles(template_.getAbsolutePath());
+		assertEquals(true, latex.insertData(latex.getLatexVariables(), template_.getAbsolutePath()));
 	}
 	
-	public void testInsertMetaData() {
-		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\Uni\\workspace\\latex.tex");
-		assertEquals(true, latex.insertData(latex.getLatexVariables(), "C:\\Users\\Uni\\workspace\\latex_meta.tex"));
-		assertEquals(true, latex.insertMetaData("David", System.currentTimeMillis()));
-	}*/
-	
 	public void testInclude() {
-		HandleLatexFiles latex = new HandleLatexFiles("C:\\Users\\johannes\\SW11\\test.tex");
-		latex.includeTemplate("C:\\Users\\johannes\\SW11\\");
-		assertEquals(true,latex.includeTemplate("C:\\Users\\johannes\\SW11\\").contains(" :: include1 :::"));
-		assertEquals(true,latex.checkIncludedTemplate("C:\\Users\\johannes\\SW11\\test.tex","C:\\Users\\johannes\\SW11\\toInclude.tex"));
+		HandleLatexFiles latex = new HandleLatexFiles(template_.getAbsolutePath());
+		latex.includeTemplate(path_);
+		assertEquals(true,latex.includeTemplate(path_).contains("::include1:::"));
+		assertEquals(true,latex.checkIncludedTemplate(template_.getAbsolutePath(),toInclude_.getAbsolutePath()));
 	}
 }

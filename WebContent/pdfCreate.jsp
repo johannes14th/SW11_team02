@@ -30,7 +30,7 @@
          if(action.equals("Create") && action != null) {
              //out.println(action);
              if(create != null)
-        		create.createPdf();
+        		create.createPdf(null,null);
          }
         
         %>

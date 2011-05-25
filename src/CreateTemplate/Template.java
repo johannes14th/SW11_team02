@@ -41,6 +41,11 @@ public class Template {
 		// TODO Auto-generated method stub
 		return file.getName();
 	}
+	
+	public String getAbsolutePath() {
+		// TODO Auto-generated method stub
+		return file.getAbsolutePath();
+	}
 
 	public String getExtension() {
 		// TODO Auto-generated method stub

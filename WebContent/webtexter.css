@@ -24,6 +24,10 @@ background-image:url(images/banner_right.gif);
 background-repeat:repeat-x;
 }
 
+#wrapper {
+	width: 1024px;
+	margin: auto;
+	}
 
 
 #menu {

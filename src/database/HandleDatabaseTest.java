@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.SQLException;
 import java.util.Vector;
 
 import junit.framework.TestCase;
@@ -26,4 +27,10 @@ public class HandleDatabaseTest extends TestCase {
 		db.executeStatement("DELETE FROM users WHERE username = ?;",
 				parameters);
 	}
+	
+	 public void testPwdCorrect() throws SQLException {
+		 HandleDatabase handler = new HandleDatabase();
+		 handler.createAccount("neuerTest", "test","deutsch");
+		 assertTrue(handler.checkPwd("neuerTest","test"));
+	 } 
 }
