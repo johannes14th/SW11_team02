@@ -1,5 +1,9 @@
 package database;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
 import junit.framework.TestCase;
 
 public class HandleDatabaseTest extends TestCase {
@@ -15,5 +19,11 @@ public class HandleDatabaseTest extends TestCase {
 		HandleDatabase handler = new HandleDatabase();
 		
 		assertEquals(20, handler.generateHash("test").length());
+	}
+	
+	public void testPwdCorrect() throws SQLException {
+		HandleDatabase handler = new HandleDatabase();
+		handler.createAccount("neuerTest", "test");
+		assertTrue(handler.checkPwd("neuerTest","test"));
 	}
 }
