@@ -23,12 +23,13 @@ public class HandleDatabase {
 		database_ = new Database(con);
 	}
 
-	public void createAccount(String username, String password) {
+	public void createAccount(String username, String password, String language) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO users (username, pass) VALUES (?,?) ";
+		String sql = "INSERT INTO users (username, pass, language) VALUES (?,?,?) ";
 		Vector<String> parameters = new Vector<String>();
 		parameters.add(username);
 		parameters.add(generateHash(password));
+		parameters.add(language);
 		
 		database_.executeStatement(sql, parameters);
 	}
