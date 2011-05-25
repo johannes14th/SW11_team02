@@ -10,7 +10,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry exported="true" kind="lib" path="lib/jlr.jar"/>
-	<classpathentry kind="lib" path="C:/Users/johannes/Desktop/mysql-connector-java-5.1.16/mysql-connector-java-5.1.16-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/johannes/Desktop/mysql-connector-java-5.1.16/iaik_jce.jar"/>
+	<classpathentry kind="lib" path="lib/javadocx.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.16-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

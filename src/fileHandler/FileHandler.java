@@ -41,5 +41,9 @@ public class FileHandler {
 		} 
 	}
 	
+	public static String getSeparator() {
+		return System.getProperty("file.separator");
+	}
+	
 
 }
