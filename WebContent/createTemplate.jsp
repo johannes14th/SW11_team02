@@ -16,8 +16,14 @@
 
 String tmp = request.getParameter("filename");
 String content = request.getParameter("input");
+String username = (String)session.getAttribute("username");
 
-Data data = new Data(application.getRealPath(tmp));
+Data data;
+
+if(username != "")
+  data = new Data(tmp,username);
+else
+  data = new Data(application.getAbsolutePath(tmp));
 
 if(content != "")
 	data.setInput(content);
@@ -36,7 +42,8 @@ if(content != "")
 out.println("</table>");
 
 if(content == "") {
-	Template template = new Template(application.getRealPath(tmp));
+	
+	Template template = new Template(application.getRealPath(tmp),username);
 	if(template.isAllowedExtension(template.getExtension())) {
 		template.createTemplate();
 		out.println("<font color=\"green\">Template successfully created!<br><br></font>");

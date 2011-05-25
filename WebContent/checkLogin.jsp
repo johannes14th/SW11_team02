@@ -21,7 +21,9 @@ if(handler.databaseHasEntry(username)) {
   if(handler.checkPwd(username,pwd)) {
 	  out.println("Success");
 	  session.setAttribute("username",username);
+	  session.setAttribute("loginstatus","true");
 	  response.sendRedirect("intern.jsp");
+
   } else {
 	  response.sendRedirect("loginForm.jsp?error=2");
   }

@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import fileHandler.FileHandler;
+
 public class Template {
 
 	private File file;
@@ -17,6 +19,18 @@ public class Template {
 	public Template(String string) {
 		// TODO Auto-generated constructor stub
 		file = new File(string);
+		
+		String[] splitFilename = string.split("\\.");
+		extension = splitFilename[splitFilename.length-1];
+	
+	}
+	
+	public Template(String string, String username) {
+		// TODO Auto-generated constructor stub
+		//file = new File(string);
+		file = new File(FileHandler.getUserPath(username));
+		
+		System.out.println(file.getAbsolutePath());
 		
 		String[] splitFilename = string.split("\\.");
 		extension = splitFilename[splitFilename.length-1];

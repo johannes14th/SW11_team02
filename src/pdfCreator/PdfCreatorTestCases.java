@@ -13,7 +13,7 @@ public class PdfCreatorTestCases extends TestCase {
 	
 	
 	public void testFilePdfExt() {
-		test.createPdf("test.pdf");
+		test.createPdf("test.pdf", "neuerTest");
 		String file_name = test.getPdfName();
 		boolean check = file_name.contains(".pdf");
 		assertEquals(true, check);

@@ -17,15 +17,33 @@
 
 <%
 
-String filename = request.getParameter("filename");
-String directory = request.getParameter("directory");
+String delete = request.getParameter("delete");
 
-out.println("FILE: " + filename + "<br>");
-out.println("DIR: " + directory);
-
-CreatorPdf creator = new CreatorPdf(directory);
-File pdf = creator.createPdf(filename);
-
+if(delete != "" && delete != null && delete.equals("1")) {
+	out.println("<font color=\"green\">File successfully deleted!</font>");
+} else {
+	String filename = request.getParameter("filename");
+	String directory = request.getParameter("directory");
+	String username = (String)session.getAttribute("username");
+	
+	CreatorPdf creator = new CreatorPdf(directory);
+	
+	File pdf;
+	
+	if(username != "")
+		pdf = creator.createPdf(filename,username);
+	else
+		pdf = creator.createPdf(filename,"");
+	
+	out.println("<form action=\"deleteFile.jsp\" method=\"post\">");
+	out.println("<table>");
+	out.println("<tr><td>PDF Successfully created: <a href=\"" + pdf.getAbsolutePath() + "\">"+ pdf.getName() + "</a></td>" );
+	out.println("<td><input type=\"hidden\" name=\"path\" value=\"" + pdf.getAbsolutePath() +"\"></td>");
+	out.println("<td><input type=\"submit\" value=\"delete\"></td>");
+	out.println("</table>");
+	out.println("</form>");
+}
 %>
+
 </body>
 </html>
