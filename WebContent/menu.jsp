@@ -31,6 +31,7 @@ if(status != "" && status != null) {
 							out.println("<a href=\"editTemplate.jsp\">Edit Template</a> |");
 							out.println("<a href=\"logout.jsp\">Logout</a> |");
 							out.println("<a href=\"impressum.jsp\">Impressum</a> |");
+							out.println("<a href=\"showFile.jsp\">MyFiles</a> |");
 							out.println("</td>");
 							out.println("</tr>");
 							out.println("</table>");							

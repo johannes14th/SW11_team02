@@ -16,21 +16,32 @@
 <jsp:include page="contentBegin.jsp"></jsp:include>
 
 <h1>Your Files:</h1>
+<form action = "delete.jsp" method = "post">
 <%
+String[] extension = {".docx",".pdf",".xml"};
+
 String username = (String)session.getAttribute("username");
-out.println("<table>");
-out.println("<tr><td></td><td><select name=file_name>");
 
-servTempl= new ChooseTemplate(FileHandler.getUserPath(username),".tex");
-
-servTempl.getTemplateNames();
-
-for(int i = 0; i < servTempl.getSize(); i++)
+for(int a = 0; a < extension.length; a++)
 {
-  out.println("<option>" + servTempl.getTemplateName(i) + "</OPTION>") ;
+	out.println("<table><tr><td>" + extension[a] + "</td></tr>");
+	
+	ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getUserPath(username),extension[a]);
+	servTempl.getTemplateNames();
+	
+	for(int i = 0; i < servTempl.getSize(); i++)
+	{
+	  out.println("<tr><td><input type='radio' name='delete' value='"+ servTempl.getTemplateName(i) +"'>"
+			  + servTempl.getTemplateName(i) + "</td></tr>");
+	}
 }
 %>
-
+  </select></td></tr>
+  
+  <tr><td><input type="submit" name="button" value="delete" /></td>
+  </tr>
+  </table>
+</form>
 
 
 <jsp:include page="contentEnd.jsp"></jsp:include>
