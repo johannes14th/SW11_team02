@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-	font-family: "Comic Sans MS", cursive;
+	font-family: "Verdana", cursive;
 }
 a:link {
 	color: #FFF;
@@ -26,9 +26,7 @@ a:hover {
 	padding-top: 5px;
 	padding-left: 30px;
 	padding-bottom: 30px;
-
-
-	}
+}
 
 #header {
 	background-image:url(images/banner_right.gif);
@@ -92,6 +90,7 @@ a:hover {
 	background-repeat: repeat-y;
 	margin: 0px;
 	padding: 0px;
+	
 }
 
 .right{
