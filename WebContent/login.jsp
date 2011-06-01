@@ -35,13 +35,21 @@ function checkForm() {
 	<jsp:include page="banner.jsp"></jsp:include>
 	<jsp:include page="contentBegin.jsp"></jsp:include>
 
+<div id="infobox">
+Registrieren Sie sich bei <b>WebTEXter!</b><br><br>
+Nutzen Sie dadurch die Möglichkeit Dokumente einfach zu erstellen und zu verwalten.<br><br>
+<i>Tipp: </i> Achten Sie auf ein sicheres Passwort! Verwenden Sie dazu am besten eine Kombination aus
+Buchstaben, Zahlen und Sonderzeichen!
+</div>
+
+<h1>Registrieren</h1>
+
 <form action = "login.jsp" method = "post" name = "loginForm" onSubmit="return checkForm()">
 <table>
-<tr><td colspan="2"><b>Create a new User Account</b></td></tr>
 <tr><td colspan="2">&nbsp</td></tr>
-<tr><td>Username: </td><td><input type ="text" name="username" value=""></td></tr>
-<tr><td>Password: </td><td><input type = "password" name = "pwd" value=""></td></tr>
-<tr><td>Confirm Password: </td><td><input type = "password" name = "pwd2" value=""></td></tr>
+<tr><td>Benutzername: </td><td>&nbsp;<input type ="text" name="username" value=""></td></tr>
+<tr><td>Passwort: </td><td>&nbsp;<input type = "password" name = "pwd" value=""></td></tr>
+<tr><td>Passwort bestätigen:</td><td>&nbsp;<input type = "password" name = "pwd2" value=""></td></tr>
 <tr><td colspan="2">&nbsp</td></tr>
 <tr><td>Choose language:</td><td>
 <select name="language">
