@@ -13,11 +13,20 @@
 <div id="wrapper">
 <jsp:include page="banner.jsp"></jsp:include>
 <jsp:include page="contentBegin.jsp"></jsp:include>
-						<p>Impressum:</p>
-						<p>Super High Intelligent Technologies</p>
+
+<div id="logobox">
+						<h1>Impressum</h1>
+						<p><b>Super High Intelligent Technologies</b></p>
 						<p>Inffeldgasse 25D Keller<br />
 						8010 Graz</p>
-						<p>Tel.: gibts net</p>
+						<p>Tel.: 0676 7499025</p>
+</div>
+
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/firmenlogo_big.png" alt="" />
+<br>
+<br>
 	<jsp:include page="contentEnd.jsp"></jsp:include>
 </div>
 </body>

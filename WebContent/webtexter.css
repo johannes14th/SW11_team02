@@ -22,7 +22,7 @@ a:hover {
 }
 
 .content{
-
+	min-height: 300px;
 	padding-top: 5px;
 	padding-left: 30px;
 	padding-bottom: 30px;
@@ -154,4 +154,33 @@ a:hover {
 	background: #2580a2 url("images/hover.gif") left center no-repeat;
 	color: #fff;
 	padding-bottom: 8px;
+}
+
+#infobox {
+	font-family: "Century Gothic";
+	text-align:justify;
+	position:absolute;
+	top:140px;
+	left:550px;
+	width: 400px;
+	padding: 20px;
+	
+	border-left-width: .1em;
+	border-left-style: dashed;
+	border-left-color: #ABABAB;
+}
+
+#logobox {
+	position:absolute;
+	top:120px;
+	left:420px;
+	width: 400px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 50px;
+		
+	border-left-width: .1em;
+	border-left-style: dashed;
+	border-left-color: #ABABAB;
+	
 }

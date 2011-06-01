@@ -15,7 +15,7 @@
 <jsp:include page="banner.jsp"></jsp:include>
 <jsp:include page="contentBegin.jsp"></jsp:include>
 
-<h1>Template Assistant:</h1>
+<h1>Anpassen</h1>
 
 <form action = "DataForm.jsp" method = "post">
 

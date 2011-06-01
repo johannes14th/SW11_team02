@@ -11,17 +11,8 @@
 <div id="wrapper">
 	<jsp:include page="banner.jsp"></jsp:include>
 	<jsp:include page="contentBegin.jsp"></jsp:include>
+<h1>Willkommen bei WebTEXter!</h1>
 
-				test
-					<br>
-					<br>
-					<br>
-					<br>
-					test
-					<br>
-					<br>
-					<br>
-					test
 <jsp:include page="contentEnd.jsp"></jsp:include>
 
 

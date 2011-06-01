@@ -9,13 +9,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>WebTEXter</title>
 <link href="webtexter.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+
+function redirect() {
+	window.location.href="templateAssistant.jsp";
+}
+
+</script>
+
 </head>
 <body>
 
 <div id="wrapper">
 <jsp:include page="banner.jsp"></jsp:include>
 <jsp:include page="contentBegin.jsp"></jsp:include>
-<h1>Edit Template:</h1>
+
+<div id="infobox" style="top: 250px;">
+
+Bearbeiten Sie Ihre Dokumente!<br> Wählen Sie dazu die gewünschte Datei!
+
+</div>
+
+<table>
+<tr><td>&nbsp</td></tr>
+<tr><td><img alt="" src="images/bearbeiten.jpg" width="100"></td><td>&nbsp;&nbsp;</td><td valign="middle"><font size="6px">Dokument bearbeiten</font></td></tr>
+<tr><td>&nbsp</td></tr>
+<tr><td>&nbsp</td></tr>
+</table>
+
+<table>
+<tr>
+<td> Wählen Sie das Dokument: </td>
+<td>
 <form>
 
   <select name=file_name>
@@ -31,13 +57,21 @@ for(int i = 0; i < servTempl.getSize(); i++) {
 }
 %>
   </select>
-  
-  <input type="submit" name="button" value="open" />
+  </td></tr>
+  <tr><td>&nbsp</td></tr>
+  <tr>
+  <td colspan=3 align=right>
+  <input type="submit" name="button" value="Öffnen" />
+  <input type="submit" name="button" onclick="redirect()" value="Abbrechen" />
 </form>
 
         
  <% 
  String file_name = request.getParameter("file_name");
+
+ if(request.getParameter("button") != null && request.getParameter("button").equals("Abbrechen"))
+ 	response.sendRedirect("templateAssistant.jsp");
+ 
  servTempl.setFileName(file_name);
  
  if(file_name != "" && file_name != null) {
@@ -56,6 +90,10 @@ for(int i = 0; i < servTempl.getSize(); i++) {
  }
  
  %>
+
+</td>
+</tr>
+</table>
 
 <jsp:include page="contentEnd.jsp"></jsp:include>
 
