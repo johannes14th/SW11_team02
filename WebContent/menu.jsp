@@ -28,7 +28,8 @@ if(status != "" && status != null) {
 							out.println("<a href=\"intern.jsp\">Mein WebTEXter</a> |");
 							out.println("<a href=\"templateAssistant.jsp\">Dokumentenassistent</a> |");
 							out.println("<a href=\"logout.jsp\">Logout</a> |");
-							out.println("<a href=\"impressum.jsp\">Impressum</a>");
+							out.println("<a href=\"impressum.jsp\">Impressum</a> |");
+							out.println("<a href=\"showFile.jsp\">MyFiles</a> |");
 							out.println("</td>");
 							out.println("</tr>");
 							out.println("</table>");							

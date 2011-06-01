@@ -84,8 +84,6 @@ public class HandleDatabase {
 		  try {
 			  tmp.next();
 			  expectedPwd = tmp.getString("pass");
-			  System.out.println("Pwd: " + expectedPwd + " | hash: " + hash);
-			  System.out.println("Pwd: " + expectedPwd.length() + " | hash: " + hash.length());
 			  return expectedPwd.equals(hash) ? true : false;
 		  } catch (SQLException e) {
 			  // TODO Auto-generated catch block
