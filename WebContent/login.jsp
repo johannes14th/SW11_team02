@@ -43,6 +43,13 @@ function checkForm() {
 <tr><td>Password: </td><td><input type = "password" name = "pwd" value=""></td></tr>
 <tr><td>Confirm Password: </td><td><input type = "password" name = "pwd2" value=""></td></tr>
 <tr><td colspan="2">&nbsp</td></tr>
+<tr><td>Choose language:</td><td>
+<select name="language">
+      <option value="de" selected>Deutsch</option>
+      <option value="en">English</option>
+</select>
+
+
 <input type = "hidden" name="dbaction" value="create">
 <tr><td>&nbsp</td><td align="right"><input type = "submit" value="Cancel"><input type = "submit" value="Create"></td></tr>
 
@@ -56,6 +63,7 @@ function checkForm() {
 String parameter = request.getParameter("dbaction");
 String username = request.getParameter("username");
 String pwd = request.getParameter("pwd");
+String language = request.getParameter("language");
 
 if(parameter == null)
 	parameter = "";
@@ -65,7 +73,7 @@ if(parameter.equalsIgnoreCase("create")) {
 	HandleDatabase handler = new HandleDatabase();
 	
 	if(!handler.databaseHasEntry(username)) {
-	  handler.createAccount(username,pwd,"de");
+	  handler.createAccount(username,pwd,language);
 	  if(handler.databaseHasEntry(username)) {
 		  out.println("Account successfully created!");
 	  } else {

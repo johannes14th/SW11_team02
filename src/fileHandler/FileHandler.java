@@ -10,7 +10,17 @@ public class FileHandler {
 		path += separator + "WebTEXter";
 		return path;
 	}
-	
+
+	public static String getTemplatePath() {
+		String path = System.getProperty("wtp.deploy");
+		String separator = System.getProperty("file.separator");
+		path += separator + "WebTEXter" + separator + "Template";
+		if(new File(path).exists()) {
+			return path;
+		} else {
+			return makeDirectory(path);
+		}
+	}
 	public static String getUserPath(String username) {
 		String path = System.getProperty("wtp.deploy");
 		String separator = System.getProperty("file.separator");

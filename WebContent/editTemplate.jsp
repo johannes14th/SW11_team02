@@ -20,7 +20,9 @@
 
   <select name=file_name>
 <%
-ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getSystemPath(),".tex");
+String username = (String)session.getAttribute("username");
+
+ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getUserPath(username),".tex");
 
 servTempl.getTemplateNames();
 

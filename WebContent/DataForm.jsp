@@ -1,5 +1,6 @@
 <%@ page import="gui.DataForm" %>
 <%@ page import="java.util.List" %>
+<%@ page import="fileHandler.FileHandler" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -36,7 +37,7 @@ if (x==null || x=="")
 
 String file_name = request.getParameter("file_name");
 
-DataForm data = new DataForm(application.getRealPath(file_name));
+DataForm data = new DataForm(FileHandler.getUserPath(file_name));
 
 //DataForm data = new DataForm(application.getRealPath("neuesTemplate3.tex"));
 

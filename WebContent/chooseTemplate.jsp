@@ -25,7 +25,7 @@
 out.println("<table>");
 out.println("<tr><td>System Templates : </td><td>  <select name=file_name>");
 
-ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getSystemPath(),".tex");
+ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getTemplatePath(),".tex");
 
 servTempl.getTemplateNames();
 
