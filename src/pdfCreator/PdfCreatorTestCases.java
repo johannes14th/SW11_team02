@@ -7,20 +7,25 @@ import java.io.File;
 import CreateTemplate.Template;
 
 import de.nixosoft.jlr.JLROpener;
+import fileHandler.FileHandler;
 
 import junit.framework.TestCase;
 
 public class PdfCreatorTestCases extends TestCase {
 	CreatorPdf test = new CreatorPdf();
 	Template template_;
+	String separator = System.getProperty("file.separator");
 	
 	public void setUp() {
 		try {
 			super.setUp();
-			template_ = new Template("C:/pdfs/test.tex");
+			
+			new File("pdfs").mkdir();
+
+			template_ = new Template("pdfs" + separator +"test.tex");
 			template_.createTemplate();
 			
-			template_ = new Template("C:/pdfs/test.pdf");
+			template_ = new Template("pdfs" + separator +"test.pdf");
 			template_.createTemplate();
 			
 		} catch (Exception e) {
@@ -42,17 +47,8 @@ public class PdfCreatorTestCases extends TestCase {
 		assertEquals(true, check);
 	}
 	
-	public void testFolder () {
-		
-		//File path = new File(file_path + test.getPdfName());
-	    String check = test.getFileName();
-		
-		//JLROpener.open("test.pdf");
-		assertEquals("C:/pdfs/", check);
-	}
-	
 	public void testPath () {
-		test.setPath();
+		test.filePDF = new File("pdfs");
 		String path_string = test.getPathString();
 		File path = new File(path_string);
 		boolean check = path.exists();
@@ -60,8 +56,8 @@ public class PdfCreatorTestCases extends TestCase {
 	}
 	
 	public void testFileTex(){
-		test.setPath();
-		String path_string = test.getPathString();
+		test.fileTex = new File("pdfs");
+		String path_string = test.getTexPathString();
 		File path = new File(path_string + File.separator + test.getTexName());
 		System.out.println(path.getAbsolutePath());
 		boolean check = path.exists();
@@ -69,7 +65,7 @@ public class PdfCreatorTestCases extends TestCase {
 	}
 	
 	public void testFilePdf(){
-		test.setPath();
+		test.filePDF = new File("pdfs");
 		String path_string = test.getPathString();
 		File path = new File(path_string + File.separator + test.getPdfName());
 		boolean check = path.exists();

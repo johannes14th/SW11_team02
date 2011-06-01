@@ -76,6 +76,7 @@ public class HandleDatabase {
 		  parameters.add(username);
 		  ResultSet tmp = database_.executeQuery("SELECT pass FROM users WHERE username = ?", parameters);
         
+		  System.out.println("input: " + pwd);
 		  String hash = generateHash(pwd);
 		  String expectedPwd = null;
 
@@ -83,6 +84,8 @@ public class HandleDatabase {
 		  try {
 			  tmp.next();
 			  expectedPwd = tmp.getString("pass");
+			  System.out.println("Pwd: " + expectedPwd + " | hash: " + hash);
+			  System.out.println("Pwd: " + expectedPwd.length() + " | hash: " + hash.length());
 			  return expectedPwd.equals(hash) ? true : false;
 		  } catch (SQLException e) {
 			  // TODO Auto-generated catch block

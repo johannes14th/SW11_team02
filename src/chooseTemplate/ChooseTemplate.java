@@ -60,12 +60,10 @@ public class ChooseTemplate
 			
 			if(!dir.exists())
 			{
-				return false;	// director doesn't exist
+				return false;	// directory doesn't exist
 			}
 			
 			File[] fileList = dir.listFiles();
-			
-			//this.test = getFileExtension("C:\\template.latex");
 			
 			for(File f : fileList) 
 			{

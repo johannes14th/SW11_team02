@@ -2,7 +2,6 @@ package editTemplate;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -12,8 +11,7 @@ import fileHandler.FileHandler;
 public class Data {
 	String input = "";
 	String saved = "";
-	String file_name = "";//"latex1.tex";
-	//TODO: in Constructor -> Namen da file_name hardcoded ist.
+	String file_name = "";
 
 	public Data(String filename)
 	{

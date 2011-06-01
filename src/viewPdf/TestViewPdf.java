@@ -14,7 +14,7 @@ public class TestViewPdf extends TestCase {
 
 	
 	public void testPath(){
-		File file = new File("C:" + File.separator + "pdfs" + File.separator + "test.pdf");
+		File file = new File("pdfs" + File.separator + "test.pdf");
 		test.setFileName(file);
 		
 		BufferedWriter writer = null;
@@ -33,7 +33,7 @@ public class TestViewPdf extends TestCase {
 	}
 	
 	public void testString(){
-		File file = new File("C:" + File.separator + "pdfs" + File.separator + "test.pdf");
+		File file = new File("pdfs" + File.separator + "test.pdf");
 		test.setFileName(file);
 		
 		BufferedWriter writer = null;

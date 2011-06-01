@@ -43,7 +43,7 @@ public class ZipFolder {
 	 * @param files the files to add
 	 * @return true if works, otherwise false
 	 */
-	private boolean createZipFolder(String foldername, List<File> files) {		
+	public boolean createZipFolder(String foldername, List<File> files) {		
 		try {
 	        // Create the ZIP file
 	        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(foldername));

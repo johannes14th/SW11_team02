@@ -15,4 +15,14 @@ public class ErrorHandler {
 		errors_.add(msg);
 	}
 
+	public static String getErrorMessage(int index) {
+		if(errors_.size() > index)
+		{
+			return (String)errors_.get(index);
+		}
+		else
+		{
+			return null;
+		}
+	}
 }
