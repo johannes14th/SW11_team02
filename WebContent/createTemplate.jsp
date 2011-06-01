@@ -23,6 +23,11 @@ String tmp = request.getParameter("filename");
 String content = request.getParameter("input");
 String username = (String)session.getAttribute("username");
 
+System.out.println("BUTTON: " + request.getParameter("button"));
+
+if(request.getParameter("button").equals("Abbrechen"))
+	response.sendRedirect("templateAssistant.jsp");
+
 Data data;
 
 if(username != "")
