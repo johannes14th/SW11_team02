@@ -17,7 +17,7 @@ public class HandleDatabaseTest extends TestCase {
 	public void testGenerateHash() {
 		HandleDatabase handler = new HandleDatabase();
 		
-		assertEquals(16, handler.generateHash("test").length());
+		assertEquals(20, handler.generateHash("test").length());
 	}
 	
 	public void testPwdCorrect() throws SQLException {
