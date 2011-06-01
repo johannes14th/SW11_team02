@@ -8,6 +8,8 @@ public class TestChooseTemplate extends TestCase {
 	String test_filepath;
 	String file_name;
 	
+	
+	int dummy = -1;
 	public void setUp()
 	{
 		this.path = "data//server_templates";
