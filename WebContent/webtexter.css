@@ -16,19 +16,117 @@ a:hover {
 }
 
 #banner {
-margin:0;
+	margin:0;
+
+  	background: #E9E9E9;
 }
 
-#banner td {
-background-image:url(images/banner_right.gif);
-background-repeat:repeat-x;
+.content{
+
+	padding-top: 5px;
+	padding-left: 30px;
+	padding-bottom: 30px;
+
+
+	}
+
+#header {
+	background-image:url(images/banner_right.gif);
+	background-repeat:repeat-x;
 }
+
+#wrapper_old {
+	width: 1024px;
+	margin: auto;
+	
+	position:relative;
+	background:#fff;
+
+	display:block;
+	
+	-moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+	-moz-border-radius-bottomleft: 30px;
+    -moz-border-radius-bottomright: 30px;
+	
+	-khtml-border-radius: 30px;
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+	}
 
 #wrapper {
 	width: 1024px;
 	margin: auto;
-	}
+	
+	position:relative;
+	background:#fff;
 
+	display:block;
+}
+
+#left_{
+	background: url(images/side_left.gif);
+	width: 60px;
+	height: auto;
+	float:left;
+	margin-left: -13px;
+}
+
+#right_{
+	background: url(images/side_right.gif);
+	width: 60px;
+	height: auto;
+	float:right;
+	margin-right:-13px;
+
+}
+
+#unten_{
+		clear:both;
+	margin-left:-13px;
+	background: url(images/bottom_total.gif) left top no-repeat; /* Die Farbe #000 muss an eure Eckenfarbe angepasst werden */
+	text-align: right;
+}
+
+.left{
+	background: url(images/side_left.gif) top left;
+	background-repeat: repeat-y;
+	margin: 0px;
+	padding: 0px;
+}
+
+.right{
+	background: url(images/side_right.gif) top right;
+	background-repeat: repeat-y;
+	margin: 0px;
+	padding: 0px;
+
+}
+
+.runten{
+	background: url(images/runten.gif) bottom right no-repeat; /* Die Farbe #000 muss an eure Eckenfarbe angepasst werden */
+	margin: 0px;
+	padding: 0px;
+}
+
+.lunten{
+	background: url(images/lunten.gif) bottom left no-repeat; /* Die Farbe #000 muss an eure Eckenfarbe angepasst werden */
+
+	margin: 0px;
+	padding: 0px;
+}
+
+.roben{
+	background: url(images/roben.gif) top right no-repeat; /* Die Farbe #000 muss an eure Eckenfarbe angepasst werden */
+	margin: 0px;
+	padding: 0px;
+}
+
+.loben{
+	height: 104px;
+	background: url(images/loben.gif) top left no-repeat; /* Die Farbe #000 muss an eure Eckenfarbe angepasst werden */
+	margin: 0px;
+	padding: 0px;
+}
 
 #menu {
 	background: #000066;

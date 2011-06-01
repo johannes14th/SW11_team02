@@ -1,4 +1,4 @@
-<%@ page import="database.HandleDatabase" %>
+ <%@ page import="database.HandleDatabase" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 function checkForm() {
@@ -30,6 +31,9 @@ function checkForm() {
 
 </head>
 <body>
+<div id="wrapper">
+	<jsp:include page="banner.jsp"></jsp:include>
+	<jsp:include page="contentBegin.jsp"></jsp:include>
 
 <form action = "login.jsp" method = "post" name = "loginForm" onSubmit="return checkForm()">
 <table>
@@ -47,6 +51,8 @@ function checkForm() {
 </form>
 
 <%
+
+
 String parameter = request.getParameter("dbaction");
 String username = request.getParameter("username");
 String pwd = request.getParameter("pwd");
@@ -59,7 +65,7 @@ if(parameter.equalsIgnoreCase("create")) {
 	HandleDatabase handler = new HandleDatabase();
 	
 	if(!handler.databaseHasEntry(username)) {
-	  handler.createAccount(username,pwd);
+	  handler.createAccount(username,pwd,"de");
 	  if(handler.databaseHasEntry(username)) {
 		  out.println("Account successfully created!");
 	  } else {
@@ -72,6 +78,7 @@ if(parameter.equalsIgnoreCase("create")) {
 }
 
 %>
-
+	<jsp:include page="contentEnd.jsp"></jsp:include>
+</div>
 </body>
 </html>

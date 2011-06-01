@@ -4,12 +4,29 @@ package pdfCreator;
 
 import java.io.File;
 
+import CreateTemplate.Template;
+
 import de.nixosoft.jlr.JLROpener;
 
 import junit.framework.TestCase;
 
 public class PdfCreatorTestCases extends TestCase {
 	CreatorPdf test = new CreatorPdf();
+	Template template_;
+	
+	public void setUp() {
+		try {
+			super.setUp();
+			template_ = new Template("C:/pdfs/test.tex");
+			template_.createTemplate();
+			
+			template_ = new Template("C:/pdfs/test.pdf");
+			template_.createTemplate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	public void testFilePdfExt() {
@@ -46,6 +63,7 @@ public class PdfCreatorTestCases extends TestCase {
 		test.setPath();
 		String path_string = test.getPathString();
 		File path = new File(path_string + File.separator + test.getTexName());
+		System.out.println(path.getAbsolutePath());
 		boolean check = path.exists();
 		assertEquals(true, check);
 	}

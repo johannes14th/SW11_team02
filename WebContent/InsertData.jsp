@@ -1,3 +1,5 @@
+<%@page import="java.io.File"%>
+<%@page import="fileHandler.FileHandler"%>
 <%@ page import="gui.DataForm" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -11,15 +13,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+
+<div id="wrapper">
+<jsp:include page="banner.jsp"></jsp:include>
+<jsp:include page="contentBegin.jsp"></jsp:include>
 <table>
 <%
 
 String inputfilename = request.getParameter("inputfilename");
+String username = (String)session.getAttribute("username");
 
-DataForm data = new DataForm(application.getRealPath(inputfilename));
+DataForm data;
+
+//if(username != "")
+//	data = new DataForm(FileHandler.getUserPath(username).concat(File.separator + inputfilename));
+//else
+	data = new DataForm(application.getRealPath(inputfilename));
 
 String author = request.getParameter("Author");
 
@@ -53,7 +65,12 @@ for(String entry : data.getVars() ) {
 	out.println("<tr><td>"+entry +":</td><td>" + request.getParameter(entry) + "</td></tr>");
 }
 
-String directory = application.getRealPath(inputfilename).substring(0,application.getRealPath(inputfilename).lastIndexOf("\\"));
+String directory;
+
+if(username != "")
+	directory = FileHandler.getUserPath(username);
+else
+	directory = application.getRealPath(inputfilename).substring(0,application.getRealPath(inputfilename).lastIndexOf("\\"));
 
 String outputFile;
 if(newfilename != "") {
@@ -97,6 +114,11 @@ if(data.getHandle().insertMetaData(author, System.currentTimeMillis()) == true) 
 
 
 %>
+</table>
+
+<jsp:include page="contentEnd.jsp"></jsp:include>
+
+</div>
 
 </body>
 </html>

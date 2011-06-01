@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 function checkForm() {
@@ -29,6 +30,10 @@ function checkForm() {
 </head>
 <body>
 
+<div id="wrapper">
+<jsp:include page="banner.jsp"></jsp:include>
+<jsp:include page="contentBegin.jsp"></jsp:include>
+
 <form action="checkLogin.jsp" method= "post" name="loginForm" onSubmit="return checkForm()">
 <table>
 <tr><td>Username: </td><td><input type="text" name="username"></td></tr>
@@ -51,5 +56,8 @@ if(error != "" && error != null) {
 
 %>
 
+<jsp:include page="contentEnd.jsp"></jsp:include>
+
+</div>
 </body>
 </html>

@@ -37,6 +37,8 @@ String path = "C:/pdfs/";
 	
 		File pdf;
 		
+		System.out.println("USERNAME: " + username + " " + FileHandler.getUserPath(username));
+		
 		if(username != "")
 			pdf = new File(FileHandler.getUserPath(username));
 		else
@@ -44,7 +46,7 @@ String path = "C:/pdfs/";
 		
 		
 		try {
-			pdfGen.generate(template.getAbsoluteFile(), filePDF, fileTex);
+			pdfGen.generate(template.getAbsoluteFile(), pdf, fileTex);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

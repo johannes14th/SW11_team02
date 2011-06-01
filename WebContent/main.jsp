@@ -6,25 +6,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link href="webtexter.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-function reload() {
-	parent.frames['leftFrame'].location.reload();
-}
-
-</script>
-
 </head>
-<body onLoad="reload()">
+<body>
 <div id="wrapper">
-<jsp:include page="banner.jsp"></jsp:include>
-<jsp:include page="contentBegin.jsp"></jsp:include>
+	<jsp:include page="banner.jsp"></jsp:include>
+	<jsp:include page="contentBegin.jsp"></jsp:include>
 
-<table>
-<tr><td>Welcome <%= session.getAttribute("username") %> to the user page!</td></tr>
-</table>
-
+				test
+					<br>
+					<br>
+					<br>
+					<br>
+					test
+					<br>
+					<br>
+					<br>
+					test
 <jsp:include page="contentEnd.jsp"></jsp:include>
 
+
 </div>
+
 </body>
 </html>

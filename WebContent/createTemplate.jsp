@@ -9,8 +9,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
+<div id="wrapper">
+<jsp:include page="banner.jsp"></jsp:include>
+<jsp:include page="contentBegin.jsp"></jsp:include>
 
 <%
 
@@ -23,7 +28,7 @@ Data data;
 if(username != "")
   data = new Data(tmp,username);
 else
-  data = new Data(application.getAbsolutePath(tmp));
+  data = new Data(application.getRealPath(tmp));
 
 if(content != "")
 	data.setInput(content);
@@ -57,5 +62,9 @@ if(content == "") {
 
 
 %>
+
+<jsp:include page="contentEnd.jsp"></jsp:include>
+
+</div>
 </body>
 </html>

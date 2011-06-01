@@ -8,9 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>WebTEXter</title>
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
+<div id="wrapper">
+<jsp:include page="banner.jsp"></jsp:include>
+<jsp:include page="contentBegin.jsp"></jsp:include>
 <h1>Edit Template:</h1>
 <form>
 
@@ -51,8 +55,8 @@ for(int i = 0; i < servTempl.getSize(); i++) {
  
  %>
 
+<jsp:include page="contentEnd.jsp"></jsp:include>
 
-
-
+</div>
 </body>
 </html>

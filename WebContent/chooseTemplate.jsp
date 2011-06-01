@@ -7,18 +7,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>WebTEXter</title>
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+
+<div id="wrapper">
+<jsp:include page="banner.jsp"></jsp:include>
+<jsp:include page="contentBegin.jsp"></jsp:include>
 
 <h1>Template Assistant:</h1>
 
 <form action = "DataForm.jsp" method = "post">
 
-  <select name=file_name>
+
 <%
 
-
-
+out.println("<table>");
+out.println("<tr><td>System Templates : </td><td>  <select name=file_name>");
 
 ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getSystemPath(),".tex");
 
@@ -29,9 +34,35 @@ for(int i = 0; i < servTempl.getSize(); i++)
   out.println("<option>" + servTempl.getTemplateName(i) + "</OPTION>") ;
 }
 %>
-  </select>
+  </select></td>
   
-  <input type="submit" name="button" value="open" />
+  <td><input type="submit" name="button" value="open" /></td>
+  </tr>
+  </table>
+</form>
+
+<form action = "DataForm.jsp" method = "post">
+
+
+<%
+String username = (String)session.getAttribute("username");
+out.println("<table>");
+out.println("<tr><td>User Templates : </td><td><select name=file_name>");
+
+servTempl= new ChooseTemplate(FileHandler.getUserPath(username),".tex");
+
+servTempl.getTemplateNames();
+
+for(int i = 0; i < servTempl.getSize(); i++)
+{
+  out.println("<option>" + servTempl.getTemplateName(i) + "</OPTION>") ;
+}
+%>
+  </select></td>
+  
+  <td><input type="submit" name="button" value="open" /></td>
+  </tr>
+  </table>
 </form>
 
         
@@ -41,7 +72,9 @@ for(int i = 0; i < servTempl.getSize(); i++)
  %>
 
 
+<jsp:include page="contentEnd.jsp"></jsp:include>
 
+</div>
 
 </body>
 </html>

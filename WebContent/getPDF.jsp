@@ -12,9 +12,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
+<div id="wrapper">
+<jsp:include page="banner.jsp"></jsp:include>
+<jsp:include page="contentBegin.jsp"></jsp:include>
 <%
 
 String delete = request.getParameter("delete");
@@ -30,8 +34,12 @@ if(delete != "" && delete != null && delete.equals("1")) {
 	
 	File pdf;
 	
-	if(username != "")
+
+	
+	if(username != "") {
+		out.println("username: " + username);
 		pdf = creator.createPdf(filename,username);
+	}
 	else
 		pdf = creator.createPdf(filename,"");
 	
@@ -45,5 +53,8 @@ if(delete != "" && delete != null && delete.equals("1")) {
 }
 %>
 
+<jsp:include page="contentEnd.jsp"></jsp:include>
+
+</div>
 </body>
 </html>

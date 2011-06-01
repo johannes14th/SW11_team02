@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 function validateForm()
@@ -21,6 +22,10 @@ if (x==null || x=="")
 
 </head>
 <body>
+<div id="wrapper">
+<jsp:include page="banner.jsp"></jsp:include>
+<jsp:include page="contentBegin.jsp"></jsp:include>
+
 <%
 if(request.getParameter("tmpFilename") != null) {
 	out.println("<h1>Create File:</h1>");
@@ -70,6 +75,10 @@ if(request.getParameter("message")!= null)
 	out.println(request.getAttribute("message"));
 
 %>
+
+<jsp:include page="contentEnd.jsp"></jsp:include>
+
+</div>
 
 </body>
 </html>

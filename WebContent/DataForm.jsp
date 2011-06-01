@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="webtexter.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 function validateForm()
@@ -24,6 +25,10 @@ if (x==null || x=="")
 
 </head>
 <body>
+
+<div id="wrapper">
+<jsp:include page="banner.jsp"></jsp:include>
+<jsp:include page="contentBegin.jsp"></jsp:include>
 
 <form name = "DataForm" action = "InsertData.jsp" method = "post" onSubmit="return validateForm()">
 <table>
@@ -68,5 +73,8 @@ out.println("<tr><td><input type = \"hidden\" name=\"inputfilename\" value=\"" +
 </table>
 </form>
 
+<jsp:include page="contentEnd.jsp"></jsp:include>
+
+</div>
 </body>
 </html>

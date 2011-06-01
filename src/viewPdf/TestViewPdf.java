@@ -1,6 +1,9 @@
 package viewPdf;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import pdfCreator.CreatorPdf;
 
@@ -13,6 +16,17 @@ public class TestViewPdf extends TestCase {
 	public void testPath(){
 		File file = new File("C:" + File.separator + "pdfs" + File.separator + "test.pdf");
 		test.setFileName(file);
+		
+		BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(file));
+			writer.write("");
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		File filename = test.getFileName();
 		boolean check = filename.exists();
 		assertEquals(true, check);
@@ -21,6 +35,17 @@ public class TestViewPdf extends TestCase {
 	public void testString(){
 		File file = new File("C:" + File.separator + "pdfs" + File.separator + "test.pdf");
 		test.setFileName(file);
+		
+		BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(file));
+			writer.write("");
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		File filename = new File(test.getFileNameString());
 		boolean check = filename.exists();
 		assertEquals(true, check);
