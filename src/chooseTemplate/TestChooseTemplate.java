@@ -10,6 +10,7 @@ public class TestChooseTemplate extends TestCase {
 	
 	
 	int dummy = -1;
+	int meine = 1;
 	public void setUp()
 	{
 		this.path = "data//server_templates";

@@ -25,11 +25,11 @@ if(status != "" && status != null) {
 							out.println("<tr>");
 							out.println("<td>");
 							out.println("| <a href=\"main.jsp\">Home</a> |");
-							out.println("<a href=\"intern.jsp\">Intern |</a>");
-							out.println("<a href=\"chooseTemplate.jsp\">Template Assistant |</a>");
-							out.println("<a href=\"createNewTemplate.jsp\">Create Template |</a>");
-							out.println("<a href=\"editTemplate.jsp\">Edit Template |</a>");
-							out.println("<a href=\"logout.jsp\">Logout |</a>");
+							out.println("<a href=\"intern.jsp\">Intern</a> |");
+							out.println("<a href=\"chooseTemplate.jsp\">Template Assistant</a> |");
+							out.println("<a href=\"createNewTemplate.jsp\">Create Template</a> |");
+							out.println("<a href=\"editTemplate.jsp\">Edit Template</a> |");
+							out.println("<a href=\"logout.jsp\">Logout</a> |");
 							out.println("<a href=\"impressum.jsp\">Impressum</a> |");
 							out.println("</td>");
 							out.println("</tr>");
