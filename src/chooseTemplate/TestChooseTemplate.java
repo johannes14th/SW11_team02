@@ -8,21 +8,20 @@ public class TestChooseTemplate extends TestCase {
 	String test_filepath;
 	String file_name;
 	
-	
-	int dummy = -1;
-	int meine = 1;
 	public void setUp()
 	{
-		this.path = "data//server_templates";
+		String separator = System.getProperty("file.separator");
+		
+		this.path = "data" + separator + "server_templates";
 		this.file_extension = ".tex";
-		this.test_filepath = "data\\server_templates\\template.tex";
+		this.test_filepath = "data"+separator+"server_templates"+separator+"template.tex";
 		this.file_name = "template.tex";
 	}
 	
 	public void testGetTemplateNames()
 	{
 		ChooseTemplate servTempl = new ChooseTemplate(this.path,this.file_extension);
-		assertTrue(servTempl.getTemplateNames()); //returns false wenn Pfad nicht existiert
+		assertTrue(servTempl.getTemplateNames()); //returns false if path doesn't exist
 	}
 	
 	public void testValidExtension()

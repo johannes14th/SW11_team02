@@ -11,7 +11,7 @@ String file_name_pdf = "test.pdf";
 String file_name_tex = "test.tex";
 File filePDF;
 File fileTex;
-String path = "C:/pdfs/";
+//String path = "C:/pdfs/";
 
 	public CreatorPdf(String path) {
 		filePDF = new File(path + File.separator + "pdfs");
@@ -23,7 +23,7 @@ String path = "C:/pdfs/";
 	}
 	
 	public void setPath(){
-		filePDF = new File("C:" + File.separator + "pdfs"); //TODO Path on server
+		filePDF = new File(FileHandler.getSystemPath() + File.separator + "pdfs");
 	}
 	
 	public File createPdf(String filename,String username){
@@ -68,12 +68,17 @@ String path = "C:/pdfs/";
 	}
 
 
-	public String getFileName() {
+	/*public String getFileName() {
 		return path;
-	}
+	}*/
 
 	public String getPathString() {
 		String return_file = filePDF.getAbsolutePath(); 
+		return return_file;
+	}
+	
+	public String getTexPathString() {
+		String return_file = fileTex.getAbsolutePath(); 
 		return return_file;
 	}
 

@@ -8,11 +8,11 @@ import junit.framework.TestCase;
 public class TestChooseFilesForZip extends TestCase {
 	
 	String path;
-	
+	String separator = System.getProperty("file.separator");
 	public void setUp() {
 		try {
 			super.setUp();
-			this.path = "data//server_templates";
+			this.path = "data"+separator+"server_templates";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
