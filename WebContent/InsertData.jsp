@@ -1,10 +1,13 @@
-<%@page import="java.io.File"%>
-<%@page import="fileHandler.FileHandler"%>
-<%@ page import="gui.DataForm" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.File" %>
+<%@ page import="handleXML.HandleXML" %>
+<%@ page import="genDocx.GenDocX" %>
 <%@ page import="pdfCreator.CreatorPdf" %>
-<%@ page import="de.nixosoft.jlr.JLRConverter" %>
+<%@ page import="fileHandler.FileHandler" %>
+<%@ page import="com.javadocx.CreateDocx" %>
+
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -24,76 +27,69 @@
 <%
 
 String inputfilename = request.getParameter("inputfilename");
-String username = (String)session.getAttribute("username");
+File xml = new File(FileHandler.getSystemPath() + "/latex_templates/test.xml");
+HandleXML handler = new HandleXML(xml);
+GenDocX generator = new GenDocX(xml);
 
-DataForm data;
+String author = request.getParameter("author");
 
-//if(username != "")
-//	data = new DataForm(FileHandler.getUserPath(username).concat(File.separator + inputfilename));
-//else
-	data = new DataForm(application.getRealPath(inputfilename));
+//String newfilename = request.getParameter("filename");
 
-String author = request.getParameter("Author");
 
-String newfilename = request.getParameter("Filename");
-
-String file;
-if(newfilename != "")
-  file = request.getParameter("Filename");
-else {
-  file = "out_"+inputfilename;
-}
+//String file;
+//if(newfilename != "")
+//  file = request.getParameter("Filename");
+//else {
+//  file = "out_"+inputfilename;
+//}
 
 out.println("<tr><td><b>Metadata</b></td></tr>");
 
-for(String meta : data.getMetadata()) {
-	if(meta.equalsIgnoreCase("filename")) {
-		if(request.getParameter(meta) != null)
-			out.println("<tr><td>"+meta +":</td><td>" + file + "</td></tr>");
-	} else {
-	  out.println("<tr><td>"+meta +":</td><td>" + request.getParameter(meta) + "</td></tr>");
-	}
+HashMap<String, String> metadata = new HashMap<String, String>();
+for(String meta : handler.getMetaData()) {
+	//if(meta.equalsIgnoreCase("filename")) {
+		metadata.put(meta, request.getParameter(meta));
+			//out.println("<tr><td>"+meta +":</td><td>" + file + "</td></tr>");
+	//} else {
+	 // out.println("<tr><td>"+meta +":</td><td>" + request.getParameter(meta) + "</td></tr>");
+	//}
 }
 
 out.println("<tr><td>&nbsp</td></tr>");
 
 out.println("<tr><td><b>Variables</b></td></tr>");
 
-List<String> values = new ArrayList<String>();
-for(String entry : data.getVars() ) {
-	values.add(request.getParameter(entry));
+HashMap<String, String> values = new HashMap<String, String>();
+for(String entry : handler.getVarList() ) {
+	values.put(entry, request.getParameter(entry));
 	out.println("<tr><td>"+entry +":</td><td>" + request.getParameter(entry) + "</td></tr>");
 }
 
-String directory;
+//String directory = application.getRealPath(inputfilename).substring(0,application.getRealPath(inputfilename).lastIndexOf("\\"));
+String directory = FileHandler.getSystemPath();
 
-if(username != "")
-	directory = FileHandler.getUserPath(username);
-else
-	directory = application.getRealPath(inputfilename).substring(0,application.getRealPath(inputfilename).lastIndexOf("\\"));
-
-String outputFile;
-if(newfilename != "") {
-	outputFile = directory + "\\" +  newfilename;
-} else {
-	outputFile = directory + "\\out_" + inputfilename;
-}
+//String outputFile;
+//if(newfilename != "") {
+//	outputFile = directory + "\\" +  newfilename;
+//} else {
+//	outputFile = directory + "\\out_" + inputfilename;
+//s}
 
 out.println("<tr><td>&nbsp</td></tr>");
 out.println("</table>");
 
 System.out.println("LISTENGRÖSSE: " + values.size());
-System.out.println("LISTENGRÖSSE - HANDLE: " + data.getHandle().getLatexVariables().size());
+//System.out.println("LISTENGRÖSSE - HANDLE: " + data.getHandle().getLatexVariables().size());
 
 
-if(data.getHandle().insertData(values, outputFile) == true) {
+if(generator.generateDocX(values, metadata) == true) {
 	out.println("<table>");
 	out.println("<tr><td colspan=\"2\"><font color=\"green\">File successfully created!</font></td></tr>");
-	out.println("<tr><td colspan=\"2\"><b>Path: </b>"+outputFile+"</td></tr>");
+	out.println("<tr><td colspan=\"2\"><b>Path: </b>"+ FileHandler.getSystemPath() +"</td></tr>");
 	
 	out.println("<form action=\"getPDF.jsp\" method =\"post\">");
 	out.println("<input type=\"hidden\" name=\"directory\" value=\"" + directory + "\">");
-	out.println("<input type=\"hidden\" name=\"filename\" value=\"" + newfilename + "\">");
+	//out.println("<input type=\"hidden\" name=\"filename\" value=\"" + newfilename + "\">");
 	out.println("<input type=\"submit\" value=\"createPdf\">");
 	out.println("</form>");
 	out.println("</table>");
@@ -105,11 +101,11 @@ if(data.getHandle().insertData(values, outputFile) == true) {
 	out.println("</table>");
 }
 
-if(data.getHandle().insertMetaData(author, System.currentTimeMillis()) == true) {
+//if(data.getHandle().insertMetaData(author, System.currentTimeMillis()) == true) {
 	//out.println("successMD");
-} else {
+//} else {
 	//out.println("failMD");
-}
+//}
 
 
 

@@ -1,6 +1,8 @@
 <%@ page import="gui.DataForm" %>
-<%@ page import="java.util.List" %>
+<%@ page import="handleXML.HandleXML" %>
+<%@ page import="java.io.File" %>
 <%@ page import="fileHandler.FileHandler" %>
+<%@ page import="java.util.List" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -37,13 +39,17 @@ if (x==null || x=="")
 
 String file_name = request.getParameter("file_name");
 
-DataForm data = new DataForm(FileHandler.getUserPath(file_name));
+File xml = new File(FileHandler.getSystemPath() + FileHandler.getSeparator() + "latex_templates/test.xml");
+HandleXML handler = new HandleXML(xml);
+List<String> varList = handler.getVarList();
+
+//DataForm data = new DataForm(application.getRealPath(file_name));
 
 //DataForm data = new DataForm(application.getRealPath("neuesTemplate3.tex"));
 
 out.println("<tr><td><b>Metadata</b></td></tr>");
 
-for(String meta : data.getMetadata()) {
+for(String meta : handler.getMetaData()) {
 	String metaData = "";
 	
 	if(request.getParameter(meta) != null)
@@ -56,7 +62,10 @@ for(String meta : data.getMetadata()) {
 out.println("<tr><td>&nbsp</td></tr>");
 
 out.println("<tr><td><b>Variables</b></td></tr>");
-for(String entry : data.getVars() ) {
+out.println("<tr><td><b>");
+out.println(handler.getVarList().size());
+out.println("<b></td></tr>");
+for(String entry : handler.getVarList() ) {
 	
 	String parameter = "";
 	
