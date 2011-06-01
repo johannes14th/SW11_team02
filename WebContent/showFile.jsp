@@ -22,21 +22,28 @@ String[] extension = {".docx",".pdf",".xml"};
 
 String username = (String)session.getAttribute("username");
 
+out.println("<table><tr>");
+for(int a = 0; a < extension.length; a++)
+	out.println("<td>" + extension[a] + "</td>");
+out.println("</tr><tr>");
+
 for(int a = 0; a < extension.length; a++)
 {
-	out.println("<table><tr><td>" + extension[a] + "</td></tr>");
-	
 	ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getUserPath(username),extension[a]);
 	servTempl.getTemplateNames();
-	
+	out.println("<td><table>");	
 	for(int i = 0; i < servTempl.getSize(); i++)
 	{
+	  //out.println("<tr>");
+	  //for(int b = 0; b < a ; b++)
+		  //out.println("<td></td>");
 	  out.println("<tr><td><input type='radio' name='delete' value='"+ servTempl.getTemplateName(i) +"'>"
 			  + servTempl.getTemplateName(i) + "</td></tr>");
 	}
+	out.println("</table></td>");
 }
 %>
-  </select></td></tr>
+  </tr>
   
   <tr><td><input type="submit" name="button" value="delete" /></td>
   </tr>
