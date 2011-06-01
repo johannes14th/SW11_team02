@@ -6,6 +6,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link href="webtexter.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+function checkForm() {
+	var pwd = document.forms["loginForm"]["pwd"].value;
+	var username = document.forms["loginForm"]["username"].value;
+	
+	if(username == "") {
+		alert("Please enter a username");
+		return false;
+	}
+	
+	if (pwd == "") {
+  		alert("Please enter a password");
+  		return false;
+	}
+
+  
+}
+
+</script>
+
 </head>
 <body>
 <div id="wrapper">

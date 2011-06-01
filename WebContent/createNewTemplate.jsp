@@ -9,8 +9,11 @@
 
 <script type="text/javascript">
 
+var test = 0;
+
 function redirect() {
 	window.location.href="templateAssistant.jsp";
+	test=1;
 }
 
 function validateForm() {
@@ -18,11 +21,12 @@ function validateForm() {
 	var x=document.forms["CheckFileDialog"]["filename"].value;
 
 
-	if (x==null || x=="") {
-  		alert("Templatename must filled out!");
-  		return false;
- 	 }
-
+	if(test == 0) {
+		if (x==null || x=="") {
+  			alert("Templatename must filled out!");
+  			return false;
+ 	 	}
+	}
 	
 }
 

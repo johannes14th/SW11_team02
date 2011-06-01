@@ -10,21 +10,21 @@
 <link href="webtexter.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
-function checkForm() {
-	var pwd1 = document.forms["loginForm"]["pwd"].value;
-	var pwd2 = document.forms["loginForm"]["pwd2"].value;
-	var username = document.forms["loginForm"]["username"].value;
 
-	if (!(pwd1 == pwd2) || pwd1 == "" || pwd2 == "" ) {
-  		alert("Please enter the same password");
-  		return false;
-	}
+function checkFormRegister() {
+		var pwd1 = document.forms["loginFormRegister"]["pwd"].value;
+		var pwd2 = document.forms["loginFormRegister"]["pwd2"].value;
+		var username = document.forms["loginFormRegister"]["username"].value;
 	
-	if(username == "") {
-		alert("Please enter a username");
-		return false;
-	}
-  
+		if (!(pwd1 == pwd2) || pwd1 == "" || pwd2 == "" ) {
+	  		alert("Please enter the same password!");
+	  		return false;
+		}
+		
+		if(username == "") {
+			alert("Please enter a username!");
+			return false;
+		}
 }
 
 </script>
@@ -44,22 +44,24 @@ Buchstaben, Zahlen und Sonderzeichen!
 
 <h1>Registrieren</h1>
 
-<form action = "login.jsp" method = "post" name = "loginForm" onSubmit="return checkForm()">
+<form action = "login.jsp" method = "post" name = "loginFormRegister" onSubmit="return checkFormRegister()">
 <table>
 <tr><td colspan="2">&nbsp</td></tr>
 <tr><td>Benutzername: </td><td>&nbsp;<input type ="text" name="username" value=""></td></tr>
 <tr><td>Passwort: </td><td>&nbsp;<input type = "password" name = "pwd" value=""></td></tr>
 <tr><td>Passwort bestätigen:</td><td>&nbsp;<input type = "password" name = "pwd2" value=""></td></tr>
-<tr><td colspan="2">&nbsp</td></tr>
-<tr><td>Choose language:</td><td>
+<tr><td>Choose language:</td><td>&nbsp;
 <select name="language">
       <option value="de" selected>Deutsch</option>
       <option value="en">English</option>
-</select>
+</select></td></tr>
 
 
 <input type = "hidden" name="dbaction" value="create">
-<tr><td>&nbsp</td><td align="right"><input type = "submit" value="Cancel"><input type = "submit" value="Create"></td></tr>
+<tr><td>&nbsp</td></tr>
+<tr>
+<td colspan=2 align="right">
+<input type = "submit" value="Create"></td></tr>
 
 </table>
 

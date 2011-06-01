@@ -6,6 +6,26 @@
 <title>Untitled Document</title>
 <link href="webtexter.css" rel="stylesheet" type="text/css" />
 
+<script type="text/javascript">
+function checkForm() {
+	var pwd = document.forms["loginForm"]["pwd"].value;
+	var username = document.forms["loginForm"]["username"].value;
+	
+	if(username == "") {
+		alert("Please enter a username");
+		return false;
+	}
+	
+	if (pwd == "") {
+  		alert("Please enter a password");
+  		return false;
+	}
+
+  
+}
+
+</script>
+
 </head>
 
 <body>

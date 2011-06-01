@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="lib/javadocx.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.16-bin.jar"/>
 	<classpathentry kind="lib" path="lib/iaik_jce.jar"/>
+	<classpathentry kind="con" path="CUBICTEST_SELENIUM"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
