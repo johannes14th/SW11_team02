@@ -16,10 +16,4 @@ public class TestCreateTemplate extends TestCase {
 		assertEquals(false,template.isAllowedExtension("txt"));
 	}
 	
-	/*public void testSetContentWithStartposition() {
-		Template template = new Template("hugo.tex");
-		template.setContent("abcd",0);
-		template.setContent("test",4);
-		assertEquals("abcdtest",template.getContent());
-	}*/
 }
