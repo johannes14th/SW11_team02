@@ -52,33 +52,15 @@ public class HandleXML {
 		return true;
 	}
 
-//	private void scanNodes(NodeList nodes)
-//	{
-//		for (int i=0; i<nodes.getLength(); i++)
-//		{
-//			//nodes_.add(marker_+the_nodes.item(i).getNodeName());
-//			if (nodes.item(i).hasChildNodes() && !(nodes.item(i).getNodeName().equals("metadata")))
-//			{
-//
-//				scanNodes(nodes.item(i).getChildNodes());
-//			}
-//
-//			else {
-//				if(!(nodes.item(i).getNodeName().equals("#text")) && !(nodes.item(i).getNodeName().equals("metadata"))) {
-//					values_.add(nodes.item(i).getNodeName());
-//				}
-//			}
-//		}
-//
-//		return;
-//
-//	}
-
 	private void scanNodes() {
+
 		NodeList nodes = doc_.getElementsByTagName("var");
-		for (int i = 0; i<nodes.getLength(); i++){
-			Element tagElmnt = (Element) nodes.item(i);
-			values_.add(tagElmnt.getAttribute("id"));
+
+		if(nodes != null) {
+			for (int i = 0; i<nodes.getLength(); i++){
+				Element tagElmnt = (Element) nodes.item(i);
+				values_.add(tagElmnt.getAttribute("id"));
+			}
 		}
 
 	}

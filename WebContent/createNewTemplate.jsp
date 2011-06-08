@@ -8,14 +8,17 @@
 <title>Insert title here</title>
 <link href="webtexter.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript">
-
 <%
 String username = (String)session.getAttribute("username");
 %>
 
+<script type="text/javascript">
+
+var test = 0;
+
 function redirect() {
 	window.location.href="templateAssistant.jsp";
+	test=1;
 }
 
 function validateForm() {
@@ -23,11 +26,12 @@ function validateForm() {
 	var x=document.forms["CheckFileDialog"]["filename"].value;
 
 
-	if (x==null || x=="") {
-  		alert(Translator.getMessage("InsertFileName",username));
-  		return false;
- 	 }
-
+	if(test == 0) {
+		if (x==null || x=="") {
+  			alert("Templatename must filled out!");
+  			return false;
+ 	 	}
+	}
 	
 }
 

@@ -22,7 +22,7 @@ public class TestgenDocx extends TestCase {
 			BufferedWriter writer = null;
 			try {
 				writer = new BufferedWriter(new FileWriter(xmlTester));
-				writer.write("<?xml version=\"1.0\"?><template><metadata><author></author><date></date><filename></filename></metadata><root><font type=\"Arial\"><color type=\"green\"><var id=\"to\"></var><b type=\"single\"><var id=\"bold\"></var></b><color type=\"yellow\"><var id=\"bla\"></var></color></color><var id=\"gregor\"></var></font><i type=\"single\"><u type=\"single\"><var id=\"from\"></var></u><var id=\"irgendwas\"></var></i><jc type=\"center\"><var id=\"title\"></var><var id=\"text\"></var></jc></root></template>");
+				writer.write("<?xml version=\"1.0\"?><template><metadata><author></author><date></date><filename></filename></metadata><root><font type=\"Arial\"><color type=\"green\"><text>Mein Text</text><var id=\"to\"></var><b type=\"single\"><var id=\"bold\"></var></b><color type=\"yellow\"><var id=\"bla\"></var></color></color><var id=\"gregor\"></var></font><i type=\"single\"><u type=\"single\"><var id=\"from\"></var></u><var id=\"irgendwas\"></var></i><jc type=\"center\"><var id=\"title\"></var><var id=\"text\"></var></jc></root></template>");
 				writer.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -59,6 +59,7 @@ public class TestgenDocx extends TestCase {
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put("to", "TO");
 		data.put("bold", "BOLD");
+		data.put("bla", "BLA");
 		data.put("gregor","GREGOR");
 		data.put("from", "FROM");
 		data.put("irgendwas", "IRGENDWAS");
@@ -66,7 +67,7 @@ public class TestgenDocx extends TestCase {
 		data.put("text", "TEXT");
 		HashMap<String, String> metadata = new HashMap<String, String>();
 		metadata.put("filename","FILENAME2");
-		assertEquals(true, myDocument.generateDocX(data, metadata));
+		assertEquals(true, myDocument.generateDocX(data, metadata, "hugo"));
 	}
 
 

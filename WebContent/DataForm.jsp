@@ -1,6 +1,8 @@
 <%@ page import="gui.DataForm" %>
 <%@ page import="java.util.List" %>
 <%@ page import="fileHandler.FileHandler" %>
+<%@ page import="handleXML.HandleXML" %>
+<%@ page import="java.io.File" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -36,14 +38,23 @@ if (x==null || x=="")
 <%
 
 String file_name = request.getParameter("file_name");
+String group = request.getParameter("group");
+String username = (String)session.getAttribute("username");
 
-DataForm data = new DataForm(FileHandler.getUserPath(file_name));
+String directory = "";
 
-//DataForm data = new DataForm(application.getRealPath("neuesTemplate3.tex"));
+if(group.equals("user"))
+	directory = FileHandler.getUserPath(username);
+else
+	directory = FileHandler.getSystemPath() + FileHandler.getSeparator() +  "templates";
 
-out.println("<tr><td><b>Metadata</b></td></tr>");
 
-for(String meta : data.getMetadata()) {
+
+File xml = new File(directory  + FileHandler.getSeparator() + file_name);
+HandleXML handler = new HandleXML(xml);
+List<String> varList = handler.getVarList();out.println("<tr><td><b>Metadata</b></td></tr>");
+
+for(String meta : handler.getMetaData()) {
 	String metaData = "";
 	
 	if(request.getParameter(meta) != null)
@@ -56,7 +67,7 @@ for(String meta : data.getMetadata()) {
 out.println("<tr><td>&nbsp</td></tr>");
 
 out.println("<tr><td><b>Variables</b></td></tr>");
-for(String entry : data.getVars() ) {
+for(String entry : handler.getVarList() ) {
 	
 	String parameter = "";
 	
@@ -67,10 +78,15 @@ for(String entry : data.getVars() ) {
 }
 
 
+
 out.println("<tr><td><input type = \"hidden\" name=\"inputfilename\" value=\"" + file_name + "\" /></td></tr>");
 
 %>
-<tr><td><input type="submit" name="button" value="submit" /></td></tr>
+<tr>
+<td><input type="submit" name="button" value="DOCX" /></td>
+<td><input type="submit" name="button" value="TEX" /></td>
+<td><input type="submit" name="button" value="PDF" /></td>
+</tr>
 </table>
 </form>
 

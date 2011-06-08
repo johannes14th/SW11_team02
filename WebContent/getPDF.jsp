@@ -34,8 +34,6 @@ if(delete != "" && delete != null && delete.equals("1")) {
 	
 	File pdf;
 	
-
-	
 	if(username != "") {
 		out.println("username: " + username);
 		pdf = creator.createPdf(filename,username);

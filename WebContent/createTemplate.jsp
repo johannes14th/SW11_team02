@@ -1,6 +1,7 @@
 <%@page import="javax.naming.Context"%>
 <%@ page import = "CreateTemplate.Template" %>
-<%@ page import = "editTemplate.Data" %>
+<%@ page import = "fileHandler.FileHandler" %>
+<%@ page import = "java.io.File" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -21,45 +22,42 @@
 
 String tmp = request.getParameter("filename");
 String content = request.getParameter("input");
+String dbaction = request.getParameter("dbaction");
 String username = (String)session.getAttribute("username");
 
 System.out.println("BUTTON: " + request.getParameter("button"));
 
+String path = FileHandler.getUserPath(username) + File.separator + tmp;
+
+
 if(request.getParameter("button").equals("Abbrechen"))
 	response.sendRedirect("templateAssistant.jsp");
 
-Data data;
-
-if(username != "")
-  data = new Data(tmp,username);
-else
-  data = new Data(application.getRealPath(tmp));
-
-if(content != "")
-	data.setInput(content);
+	Template template;
+  	template = new Template(FileHandler.getUserPath(username),tmp);
 
 out.println("<table>");
 out.println("<tr><td><b>Edit Template:</b></td></tr>");
 out.println("<form action =\"createTemplate.jsp\" method=\"post\">");
-out.println("<tr><td><textarea name=\"input\" size=\"20\" rows=\"15\" cols=\"60\" wrap=\"physical\" value=\""+ data.getInput() + "\">" + data.getInput() + "</textarea></td></tr>");
+out.println("<tr><td><textarea name=\"input\" size=\"20\" rows=\"15\" cols=\"60\" wrap=\"physical\">"+template.getContent()+"</textarea></td></tr>");
 out.println("<input type=\"hidden\" name=\"filename\" value=\"" + tmp + "\"</input>" );
+out.println("<input type=\"hidden\" name=\"dbaction\" value=\"create\"</input>" );
 out.println("<tr><td><input type=\"submit\" name=\"button\" value=\"save\" /></td></tr>");
 out.println("</form>");
 
-if(content != "")
-	out.println("<tr><td>"+data.getSaved()+"</td></tr>");
-
 out.println("</table>");
 
-if(content == "") {
-	
-	Template template = new Template(application.getRealPath(tmp),username);
+if(dbaction != null)
+if(dbaction.equals("create")) {
 	if(template.isAllowedExtension(template.getExtension())) {
-		template.createTemplate();
-		out.println("<font color=\"green\">Template successfully created!<br><br></font>");
-		out.println("<b>Filename:</b> "+template.getFilename());
-		out.println("<br>");
-		out.println("<b>Path: </b>"+application.getRealPath(tmp));
+		template.createEmptyTemplate();
+		template.setContent(content);
+		if(template.isValid()) {
+			out.println("<font color=\"green\">Template successfully created!<br><br></font>");
+			out.println("<b>Filename:</b> "+template.getFilename());
+		} else {
+			out.println("<font color=\"red\">Template not created!<br><br></font>");
+		}
 	} else {
 		out.println("No valid Extension!");
 	}
