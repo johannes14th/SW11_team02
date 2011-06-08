@@ -17,6 +17,7 @@ public class TestTranslator extends TestCase {
 		super.setUp();
 		// Testuser erstellen
 		
+		InsertMessagesIntoDB.createMessageTable();
 		
 		Vector<String> parameters_en = new Vector<String>();
 		parameters_en.add("testuser_en");
@@ -53,7 +54,7 @@ public class TestTranslator extends TestCase {
 	}
 
 	public void testGetMessage() {
-		int userid_en = 0, userid_de = 0, userid_fr = 0;
+		/*int userid_en = 0, userid_de = 0, userid_fr = 0;
 		
 		Vector<String> parameters_en = new Vector<String>();
 		parameters_en.add("testuser_en");
@@ -82,12 +83,12 @@ public class TestTranslator extends TestCase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		
-		
-		assertEquals("English",Translator.getMessage("test_message",userid_en));
-		assertEquals("Deutsch",Translator.getMessage("test_message",userid_de));
+		assertEquals("English",Translator.getMessage("test_message","testuser_en"));
+		assertEquals("Deutsch",Translator.getMessage("test_message","testuser_de"));
 		//Default language
-		assertEquals("English",Translator.getMessage("test_message",userid_fr));
+		assertEquals("English",Translator.getMessage("test_message","testuser_fr"));
 	}
 
 	protected void tearDown() throws Exception {

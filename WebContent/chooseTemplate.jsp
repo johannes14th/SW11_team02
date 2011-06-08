@@ -1,5 +1,6 @@
 <%@ page import="chooseTemplate.ChooseTemplate"%>
 <%@ page import="fileHandler.FileHandler" %>
+<%@ page import = "translator.Translator" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,12 +11,16 @@
 <link href="webtexter.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<%
+String username = (String)session.getAttribute("username");
+%>
+
 
 <div id="wrapper">
 <jsp:include page="banner.jsp"></jsp:include>
 <jsp:include page="contentBegin.jsp"></jsp:include>
 
-<h1>Anpassen</h1>
+<h1><%= Translator.getMessage("generate",username) %></h1>
 
 <form action = "DataForm.jsp" method = "post">
 
@@ -36,7 +41,7 @@ for(int i = 0; i < servTempl.getSize(); i++)
 %>
   </select></td>
   
-  <td><input type="submit" name="button" value="open" /></td>
+  <td><input type="submit" name="button" value="<%= Translator.getMessage("Open",username) %>" /></td>
   </tr>
   </table>
 </form>
@@ -45,7 +50,7 @@ for(int i = 0; i < servTempl.getSize(); i++)
 
 
 <%
-String username = (String)session.getAttribute("username");
+//String username = (String)session.getAttribute("username");
 out.println("<table>");
 out.println("<tr><td>User Templates : </td><td><select name=file_name>");
 
@@ -60,7 +65,7 @@ for(int i = 0; i < servTempl.getSize(); i++)
 %>
   </select></td>
   
-  <td><input type="submit" name="button" value="open" /></td>
+  <td><input type="submit" name="button" value="<%= Translator.getMessage("Open",username) %>" /></td>
   </tr>
   </table>
 </form>

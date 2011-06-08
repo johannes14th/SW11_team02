@@ -1,5 +1,6 @@
 <%@	page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+  <%@ page import = "translator.Translator" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,11 +10,12 @@
 
 <script type="text/javascript">
 
-var test = 0;
+<%
+String username = (String)session.getAttribute("username");
+%>
 
 function redirect() {
 	window.location.href="templateAssistant.jsp";
-	test=1;
 }
 
 function validateForm() {
@@ -21,12 +23,11 @@ function validateForm() {
 	var x=document.forms["CheckFileDialog"]["filename"].value;
 
 
-	if(test == 0) {
-		if (x==null || x=="") {
-  			alert("Templatename must filled out!");
-  			return false;
- 	 	}
-	}
+	if (x==null || x=="") {
+  		alert(Translator.getMessage("InsertFileName",username));
+  		return false;
+ 	 }
+
 	
 }
 
@@ -51,14 +52,14 @@ function validateForm() {
 
 <div id="infobox" style="top: 220px; left: 580px; width:350px;">
 
-Erstellen Sie neue Dokumente! Wählen Sie dazu den gewünschten Dateinamen. <br><br>
+<%= Translator.getMessage("createTemplate_info",username) %> <br><br>
 
-<i>Achtung: </i> Erstellen Sie nur Dokumente mit der Endung .tex!
+<i><%= Translator.getMessage("Warning",username) %>: </i> <%= Translator.getMessage("create_warning",username) %>
 </div>
 
 <table>
 <tr><td>&nbsp</td></tr>
-<tr><td><img alt="" src="images/erstellen.jpg" width="100"></td><td>&nbsp;&nbsp;</td><td valign="middle"><font size="6px">Dokument erstellen</font></td></tr>
+<tr><td><img alt="" src="images/erstellen.jpg" width="100"></td><td>&nbsp;&nbsp;</td><td valign="middle"><font size="6px"><%= Translator.getMessage("createDoc",username) %></font></td></tr>
 <tr><td>&nbsp</td></tr>
 <tr><td>&nbsp</td></tr>
 </table>
@@ -75,7 +76,7 @@ Erstellen Sie neue Dokumente! Wählen Sie dazu den gewünschten Dateinamen. <br><b
 <form name="CheckFileDialog" action ="createTemplate.jsp" method="post" onSubmit = "return validateForm()">
 
 <table>
-<tr><td>Name des Dokuments:&nbsp;&nbsp;&nbsp;</td>
+<tr><td><%= Translator.getMessage("DocName",username) %>:&nbsp;&nbsp;&nbsp;</td>
 <td>
   <input type="text" name="filename" />
   
@@ -89,8 +90,8 @@ Erstellen Sie neue Dokumente! Wählen Sie dazu den gewünschten Dateinamen. <br><b
   </td></tr>
   <tr>
   <td align="right" colspan=2>
-  <input type="submit" name="button" value="Erstellen" />
-  <input type="submit" name="button" onclick="redirect()" value="Abbrechen" /></td>
+  <input type="submit" name="button" value="<%= Translator.getMessage("create",username) %>" />
+  <input type="submit" name="button" onclick="redirect()" value="<%= Translator.getMessage("Cancel",username) %>" /></td>
   </tr></table>
   </form>
 
@@ -98,7 +99,7 @@ Erstellen Sie neue Dokumente! Wählen Sie dazu den gewünschten Dateinamen. <br><b
 <%
 if(request.getParameter("message") != null)
 	if(request.getParameter("message").equalsIgnoreCase("1"))
-      out.println("Please insert a filename!");
+      out.println(Translator.getMessage("InsertFileName",username));
 
 if(request.getParameter("message")!= null)
 	out.println(request.getAttribute("message"));

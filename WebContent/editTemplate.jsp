@@ -1,6 +1,7 @@
 <%@page import="chooseTemplate.ChooseTemplate"%>
 <%@page import="CreateTemplate.Template"%>
 <%@ page import="fileHandler.FileHandler" %>
+<%@ page import = "translator.Translator" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,6 +10,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>WebTEXter</title>
 <link href="webtexter.css" rel="stylesheet" type="text/css" />
+<%
+String username = (String)session.getAttribute("username");
+%>
+
+
+
 
 <script type="text/javascript">
 
@@ -27,26 +34,26 @@ function redirect() {
 
 <div id="infobox" style="top: 250px;">
 
-Bearbeiten Sie Ihre Dokumente!<br> Wählen Sie dazu die gewünschte Datei!
+<%= Translator.getMessage("editTemplate_info",username) %>
 
 </div>
 
 <table>
 <tr><td>&nbsp</td></tr>
-<tr><td><img alt="" src="images/bearbeiten.jpg" width="100"></td><td>&nbsp;&nbsp;</td><td valign="middle"><font size="6px">Dokument bearbeiten</font></td></tr>
+<tr><td><img alt="" src="images/bearbeiten.jpg" width="100"></td><td>&nbsp;&nbsp;</td><td valign="middle"><font size="6px"><%= Translator.getMessage("editDoc",username) %></font></td></tr>
 <tr><td>&nbsp</td></tr>
 <tr><td>&nbsp</td></tr>
 </table>
 
 <table>
 <tr>
-<td> Wählen Sie das Dokument: </td>
+<td> <%= Translator.getMessage("chooseTemplate",username) %>: </td>
 <td>
 <form>
 
   <select name=file_name>
 <%
-String username = (String)session.getAttribute("username");
+//String username = (String)session.getAttribute("username");
 
 ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getUserPath(username),".tex");
 
@@ -61,15 +68,15 @@ for(int i = 0; i < servTempl.getSize(); i++) {
   <tr><td>&nbsp</td></tr>
   <tr>
   <td colspan=3 align=right>
-  <input type="submit" name="button" value="Öffnen" />
-  <input type="submit" name="button" onclick="redirect()" value="Abbrechen" />
+  <input type="submit" name="button" value="<%= Translator.getMessage("Open",username) %>" />
+  <input type="submit" name="button" onclick="redirect()" value="<%= Translator.getMessage("Cancel",username) %>" />
 </form>
 
         
  <% 
  String file_name = request.getParameter("file_name");
 
- if(request.getParameter("button") != null && request.getParameter("button").equals("Abbrechen"))
+ if(request.getParameter("button") != null && request.getParameter("button").equals(Translator.getMessage("Cancel",username)))
  	response.sendRedirect("templateAssistant.jsp");
  
  servTempl.setFileName(file_name);

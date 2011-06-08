@@ -8,7 +8,7 @@ import database.Database;
 
 public class Translator {
 
-	public static String getMessage(String keyword, int userid) {
+	public static String getMessage(String keyword, String username) {
 		Database db = new Database();
 		String language = "";
 		String message = "";
@@ -17,7 +17,7 @@ public class Translator {
 
 		//--------------------------get Language from user---------------------------
 		ResultSet rs = db.executeQuery(
-				"SELECT language FROM users WHERE userid = " + userid + ";",
+				"SELECT language FROM users WHERE username = '" + username + "';",
 				parameters);
 
 		try {

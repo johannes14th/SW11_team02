@@ -1,3 +1,5 @@
+ <%@ page import = "translator.Translator" %>
+
 <%
 String status = (String) session.getAttribute("loginstatus");
 
@@ -18,15 +20,17 @@ if(status != "" && status != null) {
 				
 					
 					<%
+					String username = (String)session.getAttribute("username");
+					
 						if(loggedIn) {
 							out.println("<tr>");
 							out.println("<td align=left>");
 							out.println("<table>");
 							out.println("<tr>");
 							out.println("<td>");
-							out.println("<a href=\"main.jsp\">Startseite</a> |");
-							out.println("<a href=\"intern.jsp\">Mein WebTEXter</a> |");
-							out.println("<a href=\"templateAssistant.jsp\">Dokumentenassistent</a> |");
+							out.println("<a href=\"main.jsp\">"+Translator.getMessage("Home",username)+"</a> |");
+							out.println("<a href=\"intern.jsp\">"+Translator.getMessage("My",username)+"</a> |");
+							out.println("<a href=\"templateAssistant.jsp\">" +Translator.getMessage("DocAssist",username)+"</a> |");
 							out.println("<a href=\"logout.jsp\">Logout</a> |");
 							out.println("<a href=\"impressum.jsp\">Impressum</a> |");
 							out.println("<a href=\"showFile.jsp\">MyFiles</a> |");
