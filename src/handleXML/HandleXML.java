@@ -102,6 +102,7 @@ public class HandleXML {
 		if(nodes.getLength() > 0) {
 			NodeList tmp = nodes.item(0).getChildNodes();
 			for(int i = 0; i < tmp.getLength(); i++) {
+
 				if(!(tmp.item(i).getNodeName().equals("#text"))) {
 					list.add(tmp.item(i).getNodeName());
 				}

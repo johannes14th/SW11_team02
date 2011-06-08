@@ -102,8 +102,10 @@ public class GenDocX {
 			} else {
 				ErrorHandler.addErrorMessage("no correct template");
 			}
+			System.out.println("HIIIIIIIIIIIIER" + nodes.getLength());
 
-			if(node != null) {
+			if(node != null) 
+			{
 //				while(node.hasChildNodes()) {
 //					HashMap<String, String> style = new HashMap<String, String>();
 //					NodeList vars = ((Document) node).getElementsByTagName("var");
@@ -125,12 +127,14 @@ public class GenDocX {
 						Element tagElmnt = (Element) tmp;
 						if(style.get(tmp.getNodeName()) == null) {
 							String attr = tagElmnt.getAttribute("type");
+							System.out.println(tmp.getNodeName());
 							style.put(tmp.getNodeName(), attr);
 						}
 					}
 					Element tagElmnt = (Element) vars.item(i);
 					String key = tagElmnt.getAttribute("id");
-					objDocx.addText(key, style);
+					System.out.println(values.get(key));
+					objDocx.addText(values.get(key), style);
 				}
 			}
 
@@ -141,7 +145,6 @@ public class GenDocX {
 
 			// Files saved to systempath, not to userpath
 			objDocx.createDocx(FileHandler.getSystemPath() + FileHandler.getSeparator() + filename);
-			//objDocx.createDocx("/Users/Berni/sw11-WebTEXter/" + filename);
 
 			return true;
 		} catch (Exception e) {
