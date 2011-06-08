@@ -43,11 +43,13 @@ String username = (String)session.getAttribute("username");
 
 String directory = "";
 
+
 if(group.equals("user"))
 	directory = FileHandler.getUserPath(username);
 else
 	directory = FileHandler.getSystemPath() + FileHandler.getSeparator() +  "templates";
 
+String totalFile = directory + FileHandler.getSeparator() + file_name;
 
 
 File xml = new File(directory  + FileHandler.getSeparator() + file_name);
@@ -79,7 +81,7 @@ for(String entry : handler.getVarList() ) {
 
 
 
-out.println("<tr><td><input type = \"hidden\" name=\"inputfilename\" value=\"" + file_name + "\" /></td></tr>");
+out.println("<tr><td><input type = \"hidden\" name=\"inputfilename\" value=\"" + totalFile + "\" /></td></tr>");
 
 %>
 <tr>

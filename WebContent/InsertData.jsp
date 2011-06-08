@@ -24,12 +24,14 @@
 <table>
 <%
 
-String inputfilename = request.getParameter("inputfilename");
+String totalFile = request.getParameter("inputfilename");
 String button = request.getParameter("button");
 String username = (String)session.getAttribute("username");
 String filename = request.getParameter("filename");
 
-File xml = new File(FileHandler.getSystemPath() + "/latex_templates/test.xml");
+System.out.println("DIR: " + totalFile);
+
+File xml = new File(totalFile);
 HandleXML handler = new HandleXML(xml);
 GenDocX docxGenerator = new GenDocX(xml);
 GenTeX texGenerator = new GenTeX(xml); 

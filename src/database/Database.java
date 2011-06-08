@@ -1,12 +1,12 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Vector;
-import java.sql.DriverManager;
 
 public class Database {
 
@@ -46,7 +46,7 @@ public class Database {
 		sql += "de text NOT NULL, ";
 		sql += "en text NOT NULL,";
 		sql += "PRIMARY KEY(keyword));";
-		
+
 		PreparedStatement stmt;
 		try {
 			stmt = con_.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class Database {
 
 			Properties props = new Properties();
 			props.put("user", "root");
-			props.put("password", "");//"040386");
+			props.put("password", "040386");
 			con_ = DriverManager.getConnection(host, props);
 			con_.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 			con_.setAutoCommit(false);
@@ -104,8 +104,9 @@ public class Database {
 		try {
 			stmt = con_.prepareStatement(sql);
 
-			for (int index = 1; index <= parameters.size(); index++)
+			for (int index = 1; index <= parameters.size(); index++) {
 				stmt.setString(index, parameters.elementAt(index - 1));
+			}
 
 			return stmt.executeQuery();
 		} catch (SQLException e) {
@@ -123,8 +124,9 @@ public class Database {
 		try {
 			stmt = con_.prepareStatement(sql);
 
-			for (int index = 1; index <= parameters.size(); index++)
+			for (int index = 1; index <= parameters.size(); index++) {
 				stmt.setString(index, parameters.elementAt(index - 1));
+			}
 
 			stmt.executeUpdate();
 		} catch (SQLException e) {
