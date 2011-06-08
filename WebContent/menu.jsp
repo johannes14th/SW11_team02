@@ -29,11 +29,10 @@ if(status != "" && status != null) {
 							out.println("<tr>");
 							out.println("<td>");
 							out.println("<a href=\"main.jsp\">"+Translator.getMessage("Home",username)+"</a> |");
-							out.println("<a href=\"intern.jsp\">"+Translator.getMessage("My",username)+"</a> |");
+							out.println("<a href=\"showFile.jsp\">"+Translator.getMessage("My",username)+"</a> |");
 							out.println("<a href=\"templateAssistant.jsp\">" +Translator.getMessage("DocAssist",username)+"</a> |");
+							out.println("<a href=\"impressum.jsp\">Impressum</a> |");							
 							out.println("<a href=\"logout.jsp\">Logout</a> |");
-							out.println("<a href=\"impressum.jsp\">Impressum</a> |");
-							out.println("<a href=\"showFile.jsp\">MyFiles</a> |");
 							out.println("</td>");
 							out.println("</tr>");
 							out.println("</table>");							

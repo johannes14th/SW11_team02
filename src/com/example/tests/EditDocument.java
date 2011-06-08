@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class EditDocument extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
-		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8081/");
+		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8080/");
 		selenium.start();
 	}
 
@@ -31,7 +31,7 @@ public class EditDocument extends SeleneseTestCase {
 		selenium.waitForPageToLoad("30000");
 		selenium.click("button");
 		selenium.waitForPageToLoad("30000");
-		assertTrue(selenium.isTextPresent("Test"));
+		assertTrue(selenium.isTextPresent("Content:"));
 		selenium.click("link=Logout");
 		selenium.waitForPageToLoad("30000");
 	}

@@ -91,6 +91,50 @@ public class HandleDatabase {
 		  }
 		  return false;
 	  }
+	  
+	  public String getLanguage(String username)
+	  {
+			Database database_ = new Database();
+			String sql = "SELECT language FROM users WHERE username = ?";
+			Vector<String> parameters = new Vector<String>();
+			parameters.add(username);
+			
+			ResultSet set = database_.executeQuery(sql, parameters);
+			
+			try {
+				set.next();
+				return set.getString("language");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "";
+			}
+	  }
+	  
+	  public void setLanguage(String username, String language) {
+			Database database_ = new Database();
+			String sql = "UPDATE users ";
+			sql += "SET language = ? ";
+			sql += "WHERE username = ?";
+			Vector<String> parameters = new Vector<String>();
+			parameters.add(language);
+			parameters.add(username);
+			
+			database_.executeStatement(sql, parameters);
+	  }
+	  
+	  public void setPassword(String username, String password) {
+			Database database_ = new Database();
+			String sql = "UPDATE users ";
+			sql += "SET pass = ? ";
+			sql += "WHERE username = ?";
+			Vector<String> parameters = new Vector<String>();
+			parameters.add(generateHash(password));
+			parameters.add(username);
+			
+			database_.executeStatement(sql, parameters);
+	  }
+	  
 
 		 
 

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class EnterWrongConfirmingPassword extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
-		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8081/");
+		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8080/");
 		selenium.start();
 	}
 
@@ -18,7 +18,7 @@ public class EnterWrongConfirmingPassword extends SeleneseTestCase {
 		selenium.open("/WebTEXter/main.jsp");
 		selenium.click("link=Registrieren");
 		selenium.waitForPageToLoad("30000");
-		selenium.type("css=form[name=loginFormRegister] > table > tbody > tr:nth(1) > td:nth(1) > input[name=username]", "test");
+		selenium.type("css=form[name=loginFormRegister] > table > tbody > tr:nth(1) > td:nth(1) > input[name=username]", "neuerTest");
 		selenium.click("//input[@value='Create']");
 		verifyFalse(selenium.isTextPresent("Account successfully created!"));
 	}
