@@ -25,7 +25,7 @@
 out.println("<table>");
 out.println("<tr><td>System Templates : </td><td>  <select name=file_name>");
 
-ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getTemplatePath(),".tex");
+ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getTemplatePath(),".xml");
 
 servTempl.getTemplateNames();
 
@@ -35,7 +35,7 @@ for(int i = 0; i < servTempl.getSize(); i++)
 }
 %>
   </select></td>
-  
+    <input type="hidden" name="group" value="system" />
   <td><input type="submit" name="button" value="open" /></td>
   </tr>
   </table>
@@ -49,7 +49,7 @@ String username = (String)session.getAttribute("username");
 out.println("<table>");
 out.println("<tr><td>User Templates : </td><td><select name=file_name>");
 
-servTempl= new ChooseTemplate(FileHandler.getUserPath(username),".tex");
+servTempl= new ChooseTemplate(FileHandler.getUserPath(username),".xml");
 
 servTempl.getTemplateNames();
 
@@ -59,7 +59,7 @@ for(int i = 0; i < servTempl.getSize(); i++)
 }
 %>
   </select></td>
-  
+  <input type="hidden" name="group" value="user" />
   <td><input type="submit" name="button" value="open" /></td>
   </tr>
   </table>

@@ -2,7 +2,6 @@ package pdfCreator;
 import java.io.File;
 import java.io.IOException;
 
-import chooseTemplate.ChooseTemplate;
 import de.nixosoft.jlr.JLRGenerator;
 import fileHandler.FileHandler;
 
@@ -19,32 +18,40 @@ File fileTex;
 	}
 
 	public CreatorPdf() {
-		
+
 	}
-	
+
 	public void setPath(){
 		filePDF = new File(FileHandler.getSystemPath() + File.separator + "pdfs");
 	}
-	
+
 	public File createPdf(String filename,String username){
 		//setPath();
-		File template = new File(fileTex + File.separator + filename);
+
+		filename = filename.toLowerCase();
+
+		if(!filename.contains(".tex")) {
+			filename += ".tex";
+		}
+
+		File template = new File(FileHandler.getUserPath(username) + File.separator + filename);
 		System.out.println("FILENAME: " + fileTex + File.separator + filename);
 		//File template = new File(filename);
-		
+
 		JLRGenerator pdfGen = new JLRGenerator();
 		pdfGen.deleteTempTexFile(false);
-	
+
 		File pdf;
-		
+
 		System.out.println("USERNAME: " + username + " " + FileHandler.getUserPath(username));
-		
-		if(username != "")
+
+		if(username != "") {
 			pdf = new File(FileHandler.getUserPath(username));
-		else
+		} else {
 			pdf = filePDF;
-		
-		
+		}
+
+
 		try {
 			pdfGen.generate(template.getAbsoluteFile(), pdf, fileTex);
 		} catch (IOException e) {
@@ -53,13 +60,13 @@ File fileTex;
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		
+
 		System.out.println("Fertig");
-		
+
 		return pdfGen.getPDF();
 	}
 
-	public String getPdfName() {		
+	public String getPdfName() {
 		return file_name_pdf;
 	}
 	public String getTexName() {
@@ -73,12 +80,12 @@ File fileTex;
 	}*/
 
 	public String getPathString() {
-		String return_file = filePDF.getAbsolutePath(); 
+		String return_file = filePDF.getAbsolutePath();
 		return return_file;
 	}
-	
+
 	public String getTexPathString() {
-		String return_file = fileTex.getAbsolutePath(); 
+		String return_file = fileTex.getAbsolutePath();
 		return return_file;
 	}
 

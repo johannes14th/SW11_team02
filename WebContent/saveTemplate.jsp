@@ -2,38 +2,19 @@
 <%@ page import = "CreateTemplate.Template" %>
 <%@ page import = "editTemplate.Data" %>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<link href="webtexter.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
-<div id="wrapper">
-<jsp:include page="banner.jsp"></jsp:include>
-<jsp:include page="contentBegin.jsp"></jsp:include>
-
 <%
 
-String tmp = request.getParameter("filename");
+String realPath = request.getParameter("filename");
 String content = request.getParameter("input");
 
-Data data = new Data(application.getRealPath(tmp));
+System.out.println(realPath);
 
-if(content != "")
+Data data = new Data(realPath);
+
+if(content != null)
 	data.setInput(content);
 
 String redirectURL = "editTemplate.jsp";
 response.sendRedirect(redirectURL);
 
 %>
-
-<jsp:include page="contentEnd.jsp"></jsp:include>
-
-</div>
-</body>
-</html>

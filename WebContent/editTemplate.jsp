@@ -48,7 +48,7 @@ Bearbeiten Sie Ihre Dokumente!<br> Wählen Sie dazu die gewünschte Datei!
 <%
 String username = (String)session.getAttribute("username");
 
-ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getUserPath(username),".tex");
+ChooseTemplate servTempl= new ChooseTemplate(FileHandler.getUserPath(username),".xml");
 
 servTempl.getTemplateNames();
 
@@ -75,15 +75,15 @@ for(int i = 0; i < servTempl.getSize(); i++) {
  servTempl.setFileName(file_name);
  
  if(file_name != "" && file_name != null) {
- 	String realPath = FileHandler.getSystemPath() + "/" + file_name;
+ 	String realPath = FileHandler.getUserPath(username) + "/" + file_name;
  	Template template = new Template(realPath);
  	String content = template.getContent();
  
  	out.println("<table>");
  	out.println("<tr><td><b>Content:</b></td></tr>");
  	out.println("<form action =\"saveTemplate.jsp\" method=\"post\">");
- 	out.println("<tr><td><textarea name=\"input\" size=\"20\" rows=\"15\" cols=\"60\" wrap=\"physical\" value=\""+ content + "\">" + content + "</textarea></td></tr>");
- 	out.println("<input type=\"hidden\" name=\"filename\" value=\"" + file_name + "\"</input>" );
+ 	out.println("<tr><td><textarea name=\"input\" size=\"20\" rows=\"15\" cols=\"60\" wrap=\"physical\">" + content + "</textarea></td></tr>");
+ 	out.println("<input type=\"hidden\" name=\"filename\" value=\"" + realPath + "\"</input>" );
  	out.println("<tr><td><input type=\"submit\" name=\"button\" value=\"save\" /></td></tr>");
  	out.println("</form>");
  	out.println("</table>");

@@ -23,6 +23,8 @@ public class GenDocX {
 
 	File xml_;
 	HandleXML handler_;
+	List<HashMap<String,String>> list_;
+	CreateDocx objDocx_;
 
 	public GenDocX(File xml) {
 		xml_ = xml;
@@ -69,33 +71,16 @@ public class GenDocX {
 		return null;
 	}
 
-	public boolean generateDocX(HashMap<String, String> values, HashMap<String, String> metadata) {
+	public boolean generateDocX(HashMap<String, String> values, HashMap<String, String> metadata, String username) {
 		try {
-			CreateDocx objDocx = new CreateDocx(".docx");
-
-
-			//List<String> list = getXmlVars();
-//			String text = "";
-//			for(int i = 0; i < values.size(); i++) {
-//				String node = values.get(i);
-//				text += node;
-//			}
-//			objDocx.addText(text);
-//			HashMap<String, String> test = new HashMap<String, String>();
-//			test.put("i", "single");
-//			test.put("color", "blue");
-//			objDocx.addText("HALLO", test);
-//
-//			HashMap<String, String> test2 = new HashMap<String, String>();
-//			test2.put("u", "single");
-//			test2.put("jc", "left");
-//			objDocx.addText("TEST", test2);
+			objDocx_ = new CreateDocx(".docx");
 			NodeList nodes = getXmlAll();
 			Node node = null;
 			if(nodes.getLength() > 0) {
 				nodes = nodes.item(0).getChildNodes();
 				if(nodes.getLength() == 2) {
 					node = nodes.item(1);
+					//visit(node, 0, values);
 				} else {
 					ErrorHandler.addErrorMessage("no metadata or root node");
 				}
@@ -104,37 +89,11 @@ public class GenDocX {
 			}
 			System.out.println("HIIIIIIIIIIIIER" + nodes.getLength());
 
-			if(node != null) 
+			if(node != null)
 			{
-//				while(node.hasChildNodes()) {
-//					HashMap<String, String> style = new HashMap<String, String>();
-//					NodeList vars = ((Document) node).getElementsByTagName("var");
-//					for(int i = 0; i < vars.getLength(); i++) {
-//						Element tagElmnt = (Element) nodes.item(i);
-//						String key = tagElmnt.getAttribute("id");
-//						objDocx.addText(key, style);
-//					}
-//					nodes = node.getChildNodes();
-//
-//				}
-				//visit(node, 0);
+				visit(node, 0, values);
 				NodeList vars = getXmlVars();
 				for(int i = 0; i < vars.getLength(); i++) {
-					Node tmp = vars.item(i);
-					HashMap<String, String> style = new HashMap<String, String>();
-					while(tmp.getParentNode() != null && tmp.getParentNode().getNodeName() != "root") {
-						tmp = tmp.getParentNode();
-						Element tagElmnt = (Element) tmp;
-						if(style.get(tmp.getNodeName()) == null) {
-							String attr = tagElmnt.getAttribute("type");
-							System.out.println(tmp.getNodeName());
-							style.put(tmp.getNodeName(), attr);
-						}
-					}
-					Element tagElmnt = (Element) vars.item(i);
-					String key = tagElmnt.getAttribute("id");
-					System.out.println(values.get(key));
-					objDocx.addText(values.get(key), style);
 				}
 			}
 
@@ -144,7 +103,8 @@ public class GenDocX {
 			}
 
 			// Files saved to systempath, not to userpath
-			objDocx.createDocx(FileHandler.getSystemPath() + FileHandler.getSeparator() + filename);
+			objDocx_.createDocx(FileHandler.getUserPath(username) + FileHandler.getSeparator() + filename);
+			//objDocx_.createDocx("C:\\Users\\johannes\\workspace\\SW11_team02\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\WebTEXter\\b.docx");
 
 			return true;
 		} catch (Exception e) {
@@ -154,16 +114,43 @@ public class GenDocX {
 
 	}
 
-//	public void visit(Node node, int level)
-//	{
-//		NodeList nl = node.getChildNodes();
-//
-//		for(int i=0, cnt=nl.getLength(); i<cnt; i++)
-//		{
-//			System.out.println("["+nl.item(i)+"]  " + level);
-//
-//			visit(nl.item(i), level+1);
-//		}
-//	}
+	private void visit(Node node, int level, HashMap<String, String> values)
+	{
+		NodeList nl = node.getChildNodes();
+
+		for(int i=0, cnt=nl.getLength(); i<cnt; i++)
+		{
+			System.out.println("["+nl.item(i)+"]  " + level);
+			Node tmp = nl.item(i);
+			if(nl.item(i).getNodeName().equals("text") || nl.item(i).getNodeName().equals("var")) {
+				HashMap<String, String> style = new HashMap<String, String>();
+				while(tmp.getParentNode() != null && tmp.getParentNode().getNodeName() != "root") {
+					tmp = tmp.getParentNode();
+					Element tagElmnt = (Element) tmp;
+					if(style.get(tmp.getNodeName()) == null) {
+						String attr = tagElmnt.getAttribute("type");
+						System.out.println("test " + tmp.getNodeName());
+						style.put(tmp.getNodeName(), attr);
+					}
+				}
+
+				if(nl.item(i).getNodeName().equals("var")) {
+					Element tagElmnt = (Element) nl.item(i);
+					String key = tagElmnt.getAttribute("id");
+					System.out.println("Var: " + values.get(key) + " " + key);
+
+					if(values.get(key) != null) {
+						objDocx_.addText(values.get(key), style);
+					} else {
+						objDocx_.addText("", style);
+					}
+				} else {
+					System.out.println("Text: " + nl.item(i).getTextContent());
+					objDocx_.addText(nl.item(i).getTextContent(), style);
+				}
+			}
+			visit(nl.item(i), level+1, values);
+		}
+	}
 
 }

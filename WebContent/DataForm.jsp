@@ -38,14 +38,21 @@ if (x==null || x=="")
 <%
 
 String file_name = request.getParameter("file_name");
+String group = request.getParameter("group");
+String username = (String)session.getAttribute("username");
 
-File xml = new File(FileHandler.getSystemPath() + FileHandler.getSeparator() + "latex_templates/test.xml");
+//System.out.println(file_name);
+
+String directory = "";
+
+if(group.equals("user"))
+	directory = FileHandler.getUserPath(username);
+else
+	directory = FileHandler.getSystemPath() + FileHandler.getSeparator() +  "templates";
+
+File xml = new File(directory  + FileHandler.getSeparator() + file_name);
 HandleXML handler = new HandleXML(xml);
 List<String> varList = handler.getVarList();
-
-//DataForm data = new DataForm(application.getRealPath(file_name));
-
-//DataForm data = new DataForm(application.getRealPath("neuesTemplate3.tex"));
 
 out.println("<tr><td><b>Metadata</b></td></tr>");
 
@@ -62,9 +69,7 @@ for(String meta : handler.getMetaData()) {
 out.println("<tr><td>&nbsp</td></tr>");
 
 out.println("<tr><td><b>Variables</b></td></tr>");
-out.println("<tr><td><b>");
-out.println(handler.getVarList().size());
-out.println("<b></td></tr>");
+
 for(String entry : handler.getVarList() ) {
 	
 	String parameter = "";
@@ -79,7 +84,11 @@ for(String entry : handler.getVarList() ) {
 out.println("<tr><td><input type = \"hidden\" name=\"inputfilename\" value=\"" + file_name + "\" /></td></tr>");
 
 %>
-<tr><td><input type="submit" name="button" value="submit" /></td></tr>
+<tr>
+<td><input type="submit" name="button" value="DOCX" /></td>
+<td><input type="submit" name="button" value="TEX" /></td>
+<td><input type="submit" name="button" value="PDF" /></td>
+</tr>
 </table>
 </form>
 

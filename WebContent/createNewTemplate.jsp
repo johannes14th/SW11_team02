@@ -53,7 +53,7 @@ function validateForm() {
 
 Erstellen Sie neue Dokumente! Wählen Sie dazu den gewünschten Dateinamen. <br><br>
 
-<i>Achtung: </i> Erstellen Sie nur Dokumente mit der Endung .tex!
+<i>Achtung: </i> Erstellen Sie nur Dokumente mit der Endung .xml!
 </div>
 
 <table>

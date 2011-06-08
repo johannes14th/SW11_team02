@@ -25,7 +25,7 @@ public class Data {
 			}
 			in.close();
 		}
-		
+
 		catch (Exception e)
 		{
 			input = "Loading Data Failed";
@@ -35,7 +35,7 @@ public class Data {
 	public Data(String filename, String username)
 	{
 		file_name = FileHandler.getUserPath(username) + File.separator +  filename;
-		
+
 		try
 		{
 			Scanner in = new Scanner(new File(file_name));
@@ -45,22 +45,24 @@ public class Data {
 			}
 			in.close();
 		}
-		
+
 		catch (Exception e)
 		{
-			input = "Loading Data Failed";
+			input = "";
 		}
 	}
 
-	
+
 
     public void setInput( String value )
     {
     	input = value;
-    	
-    	if (value == null) return;
+
+    	if (value == null) {
+			return;
+		}
     	try {
-        	
+
     		FileWriter writer = new FileWriter(file_name);
     		writer.write(value);
     		writer.close();
@@ -68,17 +70,17 @@ public class Data {
     		Date now = new Date();
     	    saved = file_name + " saved at " + sdfDate.format(now);
 
-    	
+
     	}
-    	
+
     	catch (Exception e)
     	{
     		saved = file_name + " was not saved successfully";
     	}
-    	
+
     }
 
     public String getInput() { return input; }
     public String getSaved() { return saved; }
-    
+
 }
