@@ -40,6 +40,21 @@ public class InsertMessagesIntoDB {
 		addMessage(db, "Open", "Öffnen", "Open");
 		addMessage(db, "editDoc", "Dokument bearbeiten" ,"Edit Document");
 		addMessage(db, "chooseTemplate", "Wählen Sie das Dokument", "Choose a document");
+		addMessage(db, "Profile", "Benutzerprofil", "User profile");
+		addMessage(db, "ProfileInfo1", "Passen Sie WebTEXter Ihren persönlichen Bedürfnissen an.", "Customize WebTEXter for your individual needs.");
+		addMessage(db, "ProfileInfo2", "Ändern Sie einfach Ihre Spracheinstellungen oder legen Sie ein neues Passwort fest.", "Change your language settings or your password.");
+		addMessage(db, "ProfileInfo3", "Bekommen Sie außerdem einen Überblick über Ihre Dokumente und löschen Sie diese nach Bedarf.", "Watch your documents and delete them if you want.");
+		addMessage(db, "PersonalSettings", "Persönliche Einstellungen", "Personal settings");
+		addMessage(db, "ChangePassword", "Passwort ändern", "Change Password");
+		addMessage(db, "NewPassword", "Neues Passwort", "New Password");
+		addMessage(db, "ConfirmNewPassword", "Neues Passwort bestätigen", "Confirm new Password");
+		addMessage(db, "PasswordChanged", "Passwort erfolgreich geändert!", "Password succesfully changed!");
+		addMessage(db, "MyFiles", "Meine Dokumente", "My Files");
+		addMessage(db, "Documents", "Dokumente", "Documents");
+		addMessage(db, "SavePassword", "Passwort übernehmen", "Save Password");
+		addMessage(db, "SaveLanguage", "Sprache übernehmen", "Save Language");
+		addMessage(db, "Delete", "Löschen", "Delete");
+		
 		//addMessage(db, "Filename","Dateiname", "Filename");
 		//addMessage(db, "Filename","Dateiname", "Filename");
 		
