@@ -257,7 +257,4 @@ public class Template {
 		setContent(document);
 
 	}
-
-
-
 }

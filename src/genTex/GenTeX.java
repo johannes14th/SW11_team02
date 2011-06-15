@@ -30,19 +30,6 @@ public class GenTeX {
 		styleMap_ = new HashMap<Integer, HashMap<String,String>>();
 	}
 
-	private NodeList getXmlVars() {
-		try{
-		  DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		  DocumentBuilder db = dbf.newDocumentBuilder();
-		  Document doc = db.parse(xml_);
-		  return doc.getElementsByTagName("var");
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	public NodeList getXmlAll() {
 		try{
 		  DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

@@ -29,10 +29,22 @@ function checkForm() {
 
 </head>
 <body>
+
 <div id="wrapper">
 	<jsp:include page="banner.jsp"></jsp:include>
 	<jsp:include page="contentBegin.jsp"></jsp:include>
+
+<div id="infobox" style="top: 200px; left: 350px; width: 500px; height: 250px;">
 <h1>Willkommen bei WebTEXter!</h1>
+
+WebTEXter ermöglicht es Ihnen ganz einfach Dokumente zu erstellen, zu bearbeiten und zu verwalten!
+<br>
+Benutzen Sie diesen einmaligen Service und registrieren sie sich noch heute!!<br>
+<a href="login.jso">Registrieren</a>
+</div>
+
+
+<img src="images/wizard.png" height="400px"></img>
 
 <jsp:include page="contentEnd.jsp"></jsp:include>
 

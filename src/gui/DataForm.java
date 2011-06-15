@@ -15,8 +15,6 @@ public class DataForm {
 
 	/**
 	 * Constructor
-	 *
-	 *
 	 */
 	public DataForm(String absolutePath) {
 		 handle_ = new HandleLatexFiles(absolutePath);

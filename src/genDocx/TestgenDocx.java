@@ -34,6 +34,20 @@ public class TestgenDocx extends TestCase {
 		}
 	}
 
+	public void testMetadataExist() {
+		GenDocX myDocument = new GenDocX(xmlTester);
+		NodeList tmp = myDocument.getXmlAll();
+
+		assertEquals("metadata", tmp.item(0).getChildNodes().item(0).getNodeName());
+	}
+
+	public void testRootExist() {
+		GenDocX myDocument = new GenDocX(xmlTester);
+		NodeList tmp = myDocument.getXmlAll();
+
+		assertEquals("root", tmp.item(0).getChildNodes().item(1).getNodeName());
+	}
+
 	public void testExistFile() {
 		GenDocX myDocument = new GenDocX(xmlTester);
 		assertNotNull(myDocument.getXml());
@@ -42,10 +56,7 @@ public class TestgenDocx extends TestCase {
 	public void testParseXml() {
 		GenDocX generate = new GenDocX(xmlTester);
 		boolean size = false;
-//		List<String> list = generate.getXmlVars();
-//		if(list.size() > 0) {
-//			size = true;
-//		}
+
 		NodeList list = generate.getXmlAll();
 		if(list.getLength() > 0) {
 			size = true;

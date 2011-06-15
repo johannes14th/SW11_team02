@@ -1,19 +1,34 @@
 package CreateTemplate;
 
-import java.io.IOException;
-
 import junit.framework.TestCase;
 
 public class TestCreateTemplate extends TestCase {
-	
-	public void testCreateTemplate() throws IOException {
-		Template template = new Template("test2.tex");
+	Template template;
+
+	@Override
+	public void setUp() {
+		template = new Template("test2.tex");
 		template.setContent("test");
-		assertEquals("test2.tex",template.getFilename());
-		assertEquals("tex",template.getExtension());
+	}
+
+	public void testContent() {
 		assertEquals("test\n",template.getContent());
-		assertEquals(true,template.isAllowedExtension("tex"));
+	}
+
+	public void testFilename() {
+		assertEquals("test2.tex",template.getFilename());
+	}
+
+	public void testExtension() {
+		assertEquals("tex",template.getExtension());
+	}
+
+	public void testAllowedExtension() {
+		assertEquals(true,template.isAllowedExtension("xml"));
+	}
+
+	public void testNotAllowdExtension() {
 		assertEquals(false,template.isAllowedExtension("txt"));
 	}
-	
+
 }

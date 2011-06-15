@@ -27,7 +27,7 @@ public class Translator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		//----------------------------get Message----------------------------------------
 		parameters.add(keyword);
 
@@ -47,7 +47,7 @@ public class Translator {
 				//keyword not found in DB
 				return "!-- No Message for keyword: '" + keyword + "' --!";
 			}
-			
+
 			message = rs.getString(language);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

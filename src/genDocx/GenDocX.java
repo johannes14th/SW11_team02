@@ -48,16 +48,6 @@ public class GenDocX {
 		return null;
 	}
 
-	private List<String> getXmlMetaData() {
-		try{
-			return handler_.getMetaData();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	private NodeList getXmlVars() {
 		try{
 		  DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -80,7 +70,6 @@ public class GenDocX {
 				nodes = nodes.item(0).getChildNodes();
 				if(nodes.getLength() == 2) {
 					node = nodes.item(1);
-					//visit(node, 0, values);
 				} else {
 					ErrorHandler.addErrorMessage("no metadata or root node");
 				}
@@ -88,6 +77,7 @@ public class GenDocX {
 				ErrorHandler.addErrorMessage("no correct template");
 			}
 
+			//metadata
 			if(node != null)
 			{
 				visit(node, 0, values);
@@ -103,7 +93,6 @@ public class GenDocX {
 
 			// Files saved to systempath, not to userpath
 			objDocx_.createDocx(FileHandler.getUserPath(username) + FileHandler.getSeparator() + filename);
-			//objDocx_.createDocx("C:\\Users\\johannes\\workspace\\SW11_team02\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\WebTEXter\\b.docx");
 
 			return true;
 		} catch (Exception e) {
@@ -113,8 +102,7 @@ public class GenDocX {
 
 	}
 
-	private void visit(Node node, int level, HashMap<String, String> values)
-	{
+	private void visit(Node node, int level, HashMap<String, String> values) {
 		NodeList nl = node.getChildNodes();
 
 		for(int i=0, cnt=nl.getLength(); i<cnt; i++)
