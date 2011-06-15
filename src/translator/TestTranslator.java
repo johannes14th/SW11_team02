@@ -53,41 +53,14 @@ public class TestTranslator extends TestCase {
 
 	}
 
-	public void testGetMessage() {
-		/*int userid_en = 0, userid_de = 0, userid_fr = 0;
-		
-		Vector<String> parameters_en = new Vector<String>();
-		parameters_en.add("testuser_en");
-		ResultSet rs_en = db.executeQuery(
-				"SELECT userid FROM users WHERE username = ?;", parameters_en);
-
-		Vector<String> parameters_de = new Vector<String>();
-		parameters_de.add("testuser_de");
-		ResultSet rs_de = db.executeQuery(
-				"SELECT userid FROM users WHERE username = ?;", parameters_de);
-		
-		Vector<String> parameters_fr = new Vector<String>();
-		parameters_fr.add("testuser_fr");
-		ResultSet rs_fr = db.executeQuery(
-				"SELECT userid FROM users WHERE username = ?;", parameters_fr);
-
-		try {
-			rs_en.next();
-			rs_de.next();
-			rs_fr.next();
-			userid_en = rs_en.getInt("userid");
-			userid_de = rs_de.getInt("userid");
-			userid_fr = rs_fr.getInt("userid");
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		
+	public void testGetMessageEN() {
 		assertEquals("English",Translator.getMessage("test_message","testuser_en"));
+	}
+	public void testGetMessageDE() {
 		assertEquals("Deutsch",Translator.getMessage("test_message","testuser_de"));
-		//Default language
+	}
+
+	public void testGetMessageDefault() {
 		assertEquals("English",Translator.getMessage("test_message","testuser_fr"));
 	}
 
