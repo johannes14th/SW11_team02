@@ -35,15 +35,11 @@ File fileTex;
 		}
 
 		File template = new File(FileHandler.getUserPath(username) + File.separator + filename);
-		System.out.println("FILENAME: " + fileTex + File.separator + filename);
-		//File template = new File(filename);
 
 		JLRGenerator pdfGen = new JLRGenerator();
 		pdfGen.deleteTempTexFile(false);
 
 		File pdf;
-
-		System.out.println("USERNAME: " + username + " " + FileHandler.getUserPath(username));
 
 		if(username != "") {
 			pdf = new File(FileHandler.getUserPath(username));
@@ -60,8 +56,6 @@ File fileTex;
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-
-		System.out.println("Fertig");
 
 		return pdfGen.getPDF();
 	}

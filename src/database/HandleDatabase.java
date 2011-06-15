@@ -12,13 +12,13 @@ import java.util.Vector;
 
 
 public class HandleDatabase {
-	
+
 	Database database_;
-	
+
 	public HandleDatabase () {
 		database_ = new Database();
 	}
-	
+
 	public HandleDatabase (Connection con) {
 		database_ = new Database(con);
 	}
@@ -30,7 +30,7 @@ public class HandleDatabase {
 		parameters.add(username);
 		parameters.add(generateHash(password));
 		parameters.add(language);
-		
+
 		database_.executeStatement(sql, parameters);
 	}
 
@@ -39,21 +39,21 @@ public class HandleDatabase {
 		String sql = "SELECT * FROM users WHERE username = ?";
 		Vector<String> parameters = new Vector<String>();
 		parameters.add(username);
-		
+
 		ResultSet set = database_.executeQuery(sql, parameters);
-		
+
 		try {
 			return set.next();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
-	
+
 	public String generateHash(String message) {
-		
+
     	AlgorithmID hashAlgorithm = AlgorithmID.sha1; // e.g. AlgorithmID.sha1
         MessageDigest hashEngine = null;
 		try {
@@ -63,24 +63,23 @@ public class HandleDatabase {
 			e.printStackTrace();
 			return "";
 		}
-        
+
         byte[] rawHash = hashEngine.digest(message.getBytes());
-        
-	
+
+
 		return new String(rawHash);
 	}
-	
+
 	  public boolean checkPwd(String username, String pwd) {
 		  // TODO Auto-generated method stub
 		  Vector<String> parameters = new Vector<String>();
 		  parameters.add(username);
 		  ResultSet tmp = database_.executeQuery("SELECT pass FROM users WHERE username = ?", parameters);
-        
-		  System.out.println("input: " + pwd);
+
 		  String hash = generateHash(pwd);
 		  String expectedPwd = null;
 
-		    
+
 		  try {
 			  tmp.next();
 			  expectedPwd = tmp.getString("pass");
@@ -91,16 +90,16 @@ public class HandleDatabase {
 		  }
 		  return false;
 	  }
-	  
+
 	  public String getLanguage(String username)
 	  {
 			Database database_ = new Database();
 			String sql = "SELECT language FROM users WHERE username = ?";
 			Vector<String> parameters = new Vector<String>();
 			parameters.add(username);
-			
+
 			ResultSet set = database_.executeQuery(sql, parameters);
-			
+
 			try {
 				set.next();
 				return set.getString("language");
@@ -110,7 +109,7 @@ public class HandleDatabase {
 				return "";
 			}
 	  }
-	  
+
 	  public void setLanguage(String username, String language) {
 			Database database_ = new Database();
 			String sql = "UPDATE users ";
@@ -119,10 +118,10 @@ public class HandleDatabase {
 			Vector<String> parameters = new Vector<String>();
 			parameters.add(language);
 			parameters.add(username);
-			
+
 			database_.executeStatement(sql, parameters);
 	  }
-	  
+
 	  public void setPassword(String username, String password) {
 			Database database_ = new Database();
 			String sql = "UPDATE users ";
@@ -131,11 +130,11 @@ public class HandleDatabase {
 			Vector<String> parameters = new Vector<String>();
 			parameters.add(generateHash(password));
 			parameters.add(username);
-			
+
 			database_.executeStatement(sql, parameters);
 	  }
-	  
 
-		 
+
+
 
 }

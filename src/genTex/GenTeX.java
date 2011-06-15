@@ -113,8 +113,6 @@ public class GenTeX {
 		for(int i=0, cnt=nl.getLength(); i<cnt; i++)
 		{
 
-//			System.out.println("["+nl.item(i)+"]  " + level);
-
 			if(nl.item(i).getNodeName().equals("text") || nl.item(i).getNodeName().equals("var")) {
 				String content="";
 
@@ -123,7 +121,6 @@ public class GenTeX {
 				} else {
 					Element tagElmnt = (Element) nl.item(i);
 					String key = tagElmnt.getAttribute("id");
-					System.out.println("Var: " + values.get(key) + " " + key);
 
 					if(values.get(key) != null) {
 						content = values.get(key);
@@ -132,7 +129,7 @@ public class GenTeX {
 					}
 
 				}
-				System.out.println(content);
+
 				if(level == 0) {
 					styleMap_.clear();
 				}
@@ -146,18 +143,11 @@ public class GenTeX {
 
 			}
 			else if(!(nl.item(i).getNodeName().equals("#text"))){
-//				if(level == 0) {
-//					styleMap_.clear();
-//				}
 				HashMap<String, String> style = new HashMap<String, String>();
 				Element tagElmnt = (Element) nl.item(i);
 				String attr = tagElmnt.getAttribute("type");
-				System.out.println(level + "-" + nl.item(i).getNodeName() + "-" + attr);
 				style.put(nl.item(i).getNodeName(), attr);
 				styleMap_.put(level, style);
-//				for(int key = level+1; key < styleMap_.size(); key++) {
-//					styleMap_.remove(key);
-//				}
 			}
 			visit(nl.item(i), level+1, values);
 		}

@@ -87,7 +87,6 @@ public class GenDocX {
 			} else {
 				ErrorHandler.addErrorMessage("no correct template");
 			}
-			System.out.println("HIIIIIIIIIIIIER" + nodes.getLength());
 
 			if(node != null)
 			{
@@ -120,7 +119,6 @@ public class GenDocX {
 
 		for(int i=0, cnt=nl.getLength(); i<cnt; i++)
 		{
-			System.out.println("["+nl.item(i)+"]  " + level);
 			Node tmp = nl.item(i);
 			if(nl.item(i).getNodeName().equals("text") || nl.item(i).getNodeName().equals("var")) {
 				HashMap<String, String> style = new HashMap<String, String>();
@@ -129,7 +127,6 @@ public class GenDocX {
 					Element tagElmnt = (Element) tmp;
 					if(style.get(tmp.getNodeName()) == null) {
 						String attr = tagElmnt.getAttribute("type");
-						System.out.println("test " + tmp.getNodeName());
 						style.put(tmp.getNodeName(), attr);
 					}
 				}
@@ -137,7 +134,6 @@ public class GenDocX {
 				if(nl.item(i).getNodeName().equals("var")) {
 					Element tagElmnt = (Element) nl.item(i);
 					String key = tagElmnt.getAttribute("id");
-					System.out.println("Var: " + values.get(key) + " " + key);
 
 					if(values.get(key) != null) {
 						objDocx_.addText(values.get(key), style);
@@ -145,7 +141,6 @@ public class GenDocX {
 						objDocx_.addText("", style);
 					}
 				} else {
-					System.out.println("Text: " + nl.item(i).getTextContent());
 					objDocx_.addText(nl.item(i).getTextContent(), style);
 				}
 			}

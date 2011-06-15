@@ -6,9 +6,6 @@ String status = (String) session.getAttribute("loginstatus");
 boolean loggedIn = false;
 
 if(status != "" && status != null) {
-	
-	System.out.println(status);
-	
 	if(status.equals("true"))
 		loggedIn = true;
 }

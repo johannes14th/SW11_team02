@@ -33,14 +33,9 @@ public class Template {
 	}
 
 	public Template(String path, String filename) {
-
-		System.out.println(filename);
-
 		if(!filename.contains(".xml")) {
 			filename += ".xml";
 		}
-
-		System.out.println(path + File.separator + filename);
 
 		file = new File(path + File.separator + filename);
 
@@ -121,7 +116,7 @@ public class Template {
 
 	public void setContent(List<String> content) {
 		BufferedWriter writer = null;
-		System.out.println(file.getAbsolutePath());
+
 		try {
 			writer = new BufferedWriter(new FileWriter(file));
 			for(int index = 0; index < content.size(); index++) {
@@ -166,7 +161,6 @@ public class Template {
 	}
 
 	public void addContent(String content,HashMap<Integer, HashMap<String, String>> styleMap) {
-		System.out.println("Im addContent" + styleMap);
 		boolean center = false;
 		boolean right = false;
 		boolean left = false;
@@ -244,7 +238,6 @@ public class Template {
 
 	public void createTexTemplate(String file) {
 		this.file= new File(file);
-System.out.println(content_);
 
 		List<String> document = new ArrayList<String>();
 		document.add("\\documentclass[12pt,a4paper]{article}"

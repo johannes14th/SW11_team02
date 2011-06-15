@@ -70,10 +70,6 @@ public class HandleXML {
 		values_ = new ArrayList<String>();
 		scanNodes();
 
-//		for (int i=0; i<final_nodes_.size(); i++)
-//		{
-//			System.out.println(final_nodes_.get(i));
-//		}
 		return values_;
 	}
 

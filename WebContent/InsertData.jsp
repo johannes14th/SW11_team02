@@ -29,8 +29,6 @@ String button = request.getParameter("button");
 String username = (String)session.getAttribute("username");
 String filename = request.getParameter("filename");
 
-System.out.println("DIR: " + totalFile);
-
 File xml = new File(totalFile);
 HandleXML handler = new HandleXML(xml);
 GenDocX docxGenerator = new GenDocX(xml);
@@ -94,11 +92,7 @@ if(button.equals("DOCX")) {
 } else {
 	
 	if(texGenerator.generateTeX(values, metadata,username) == true) {
-	
-		System.out.println("FP" + FileHandler.getUserPath(username) + "/" + filename);
-		
 		File pdf = new File(FileHandler.getUserPath(username) + File.separator + filename);
-		
 		CreatorPdf creator = new CreatorPdf(FileHandler.getUserPath(username));
 	
 		if(username != "") {

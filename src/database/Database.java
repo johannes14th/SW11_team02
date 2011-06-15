@@ -92,7 +92,6 @@ public class Database {
 
 		catch (java.lang.Exception ex) {
 			System.err.println(ex.getLocalizedMessage());
-			System.err.println("mist");
 			return false;
 		}
 	}

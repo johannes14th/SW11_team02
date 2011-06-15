@@ -21,6 +21,9 @@ public class TestSuiteGui {
 		suite.addTestSuite(EnterWrongConfirmingPassword.class);
 		suite.addTestSuite(RegisterWithEmptyUsername.class);
 		suite.addTestSuite(Logout.class);
+		suite.addTestSuite(TestCreateDocx.class);
+		suite.addTestSuite(TestCreateTex.class);
+		suite.addTestSuite(TestCreatePdf.class);
 		return suite;
 	}
 

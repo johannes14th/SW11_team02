@@ -1,15 +1,17 @@
 package com.example.tests;
 
-import com.thoughtworks.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.regex.Pattern;
+
+import com.thoughtworks.selenium.DefaultSelenium;
+import com.thoughtworks.selenium.SeleneseTestCase;
 
 public class EnterWrongConfirmingPassword extends SeleneseTestCase {
+	@Override
 	@Before
 	public void setUp() throws Exception {
-		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8080/");
+		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8081/");
 		selenium.start();
 	}
 
@@ -23,6 +25,7 @@ public class EnterWrongConfirmingPassword extends SeleneseTestCase {
 		verifyFalse(selenium.isTextPresent("Account successfully created!"));
 	}
 
+	@Override
 	@After
 	public void tearDown() throws Exception {
 		selenium.stop();

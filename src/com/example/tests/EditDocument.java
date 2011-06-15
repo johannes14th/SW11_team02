@@ -1,15 +1,17 @@
 package com.example.tests;
 
-import com.thoughtworks.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.regex.Pattern;
+
+import com.thoughtworks.selenium.DefaultSelenium;
+import com.thoughtworks.selenium.SeleneseTestCase;
 
 public class EditDocument extends SeleneseTestCase {
+	@Override
 	@Before
 	public void setUp() throws Exception {
-		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8080/");
+		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8081/");
 		selenium.start();
 	}
 
@@ -36,6 +38,7 @@ public class EditDocument extends SeleneseTestCase {
 		selenium.waitForPageToLoad("30000");
 	}
 
+	@Override
 	@After
 	public void tearDown() throws Exception {
 		selenium.stop();
